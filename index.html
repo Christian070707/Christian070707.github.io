@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Christian Abdalla — Technical Computer Science &amp; Quant Dev</title>
+<title>Christian Abdalla · Technical Computer Science &amp; Quant Dev</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -18,13 +18,15 @@
     --mint: #7fb8a0;
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
+  html{ scroll-behavior:smooth; overflow-x:hidden; width:100%; }
   body{
     background:var(--bg);
     color:var(--text);
     font-family:'Inter', sans-serif;
     line-height:1.6;
     overflow-x:hidden;
+    width:100%;
+    overflow-wrap:break-word;
   }
   .mono{ font-family:'IBM Plex Mono', monospace; }
   ::selection{ background:var(--amber); color:var(--bg); }
@@ -124,6 +126,7 @@
     transition:border-color .15s;
   }
   .card:hover{ border-color:var(--amber); }
+  .card, .about-grid > div{ min-width:0; }
   .card-top{ display:flex; justify-content:space-between; align-items:start; gap:10px; flex-wrap:wrap; }
   .card h3{ font-family:'IBM Plex Mono'; font-size:1.05rem; }
   .card .status{
@@ -166,7 +169,7 @@
   footer .row{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
   footer h2{ margin-bottom:8px; }
   footer p{ color:var(--text-dim); max-width:420px; }
-  .socials{ display:flex; gap:16px; }
+  .socials{ display:flex; gap:16px; flex-wrap:wrap; }
   .socials a{
     font-family:'IBM Plex Mono'; font-size:0.85rem; color:var(--text-dim);
     border-bottom:1px solid transparent; padding-bottom:2px;
@@ -220,7 +223,7 @@
   <div class="wrap">
     <span class="ticker-tag mono">open to internships · Technical Computer Science, UT</span>
     <h1>I build infrastructure that makes markets<br>compute <em>fairly</em>.</h1>
-    <p class="lead">Technical Computer Science student at the University of Twente, working toward quantitative development. Right now I'm building low-latency C++ infrastructure for a crypto market-making system. This site tracks what else I build — from coursework to personal experiments.</p>
+    <p class="lead">Technical Computer Science student at the University of Twente, working toward quantitative development. Right now I'm building low-latency C++ infrastructure for a crypto market-making system. This site tracks what else I build, from coursework to personal experiments.</p>
     <div class="hero-links">
       <a class="btn primary" href="#projects">View projects →</a>
       <a class="btn mono" href="https://github.com/Christian070707" target="_blank" rel="noopener">GitHub</a>
@@ -245,7 +248,7 @@
     <div>
       <div class="eyebrow">// about me</div>
       <h2>From coursework to quant dev</h2>
-      <p>I study Technical Computer Science at the University of Twente and I'm working toward a career as a quantitative developer — where low-latency systems engineering meets financial models. I'm currently building C++ trading infrastructure for a cryptocurrency market-making system: real-time order book processing, a PostgreSQL/TimescaleDB time-series database, and benchmarks for critical-path latency and throughput.</p>
+      <p>I study Technical Computer Science at the University of Twente and I'm working toward a career as a quantitative developer, where low-latency systems engineering meets financial models. I'm currently building C++ trading infrastructure for a cryptocurrency market-making system: real-time order book processing, a PostgreSQL/TimescaleDB time-series database, and benchmarks for critical-path latency and throughput.</p>
       <p>Alongside my studies I'm an Investment Analyst, Financial Software Developer and External Affairs Board Member at investment society SBV Duitenberg, and a member of Rabobank's Members' Council. This site tracks what I build along the way: coursework, personal experiments, and the tools I pick up doing it.</p>
     </div>
     <div>
@@ -270,7 +273,7 @@
 
       <div class="card">
         <div class="card-top">
-          <h3>Hyperliquid — C++ Market Making Infra</h3>
+          <h3>Hyperliquid: C++ Market Making Infra</h3>
           <span class="status">active</span>
         </div>
         <p>Latency-sensitive C++ trading infrastructure for a crypto market-making system: order book management, market data handling, and quoting/execution logic driven by real-time websocket data. Includes benchmarks for critical-path latency and a PostgreSQL/TimescaleDB time-series database (with separate production and test environments) hosted on a Debian server, accessed via SSH.</p>
@@ -297,10 +300,10 @@
 
       <div class="card">
         <div class="card-top">
-          <h3>Quarto — Java TCP Game Server</h3>
+          <h3>Quarto: Java TCP Game Server</h3>
           <span class="status">completed</span>
         </div>
-        <p>Full Java TCP networking stack (server and client) for the board game Quarto: a custom application protocol, per-session state machine, thread-safe matchmaking, defensive input parsing, and disconnect handling — with the server as single source of truth, re-validating every move server-side.</p>
+        <p>Full Java TCP networking stack (server and client) for the board game Quarto: a custom application protocol, per-session state machine, thread-safe matchmaking, defensive input parsing, and disconnect handling. The server acts as single source of truth, re-validating every move server-side.</p>
         <div class="tags">
           <span class="tag">Java</span>
           <span class="tag">TCP Sockets</span>
@@ -310,10 +313,10 @@
 
       <div class="card">
         <div class="card-top">
-          <h3>RISE 5 — Fullstack Web App</h3>
+          <h3>RISE 5: Fullstack Web App</h3>
           <span class="status">completed</span>
         </div>
-        <p>5-person Scrum team, fullstack web application (Java, Vue, Bootstrap) for an external stakeholder, live-deployed on an Ubuntu server. Personally built new pages end-to-end and designed the PostgreSQL database — 15+ tables, role-based access control, and prepared statements.</p>
+        <p>5-person Scrum team, fullstack web application (Java, Vue, Bootstrap) for an external stakeholder, live-deployed on an Ubuntu server. Personally built new pages end-to-end and designed the PostgreSQL database: 15+ tables, role-based access control, and prepared statements.</p>
         <div class="tags">
           <span class="tag">Java</span>
           <span class="tag">Vue.js</span>
@@ -327,7 +330,7 @@
 
       <div class="card">
         <div class="card-top">
-          <h3>Scuba Chat — Ad-Hoc Network</h3>
+          <h3>Scuba Chat: Ad-Hoc Network</h3>
           <span class="status">completed</span>
         </div>
         <p>4-person team, a fully distributed, server-less multi-hop chat network over an emulated underwater acoustic physical layer. Personally designed a custom bit-packed packet/frame header (sequence number, addressing, fragmentation) and built the text-based user interface.</p>
@@ -340,7 +343,7 @@
 
       <div class="card">
         <div class="card-top">
-          <h3>AssetAnalyzer — Stock Dashboard</h3>
+          <h3>AssetAnalyzer: Stock Dashboard</h3>
           <span class="status">completed</span>
         </div>
         <p>A Python/Streamlit dashboard that loads historical price data and computes key financial metrics (CAGR, Sharpe ratio, max drawdown, volatility), with interactive Plotly visualizations of price trends and return distributions. Includes unit tests for the calculation logic.</p>
@@ -359,7 +362,7 @@
           <h3>Financial Newsletter Bot</h3>
           <span class="status">completed</span>
         </div>
-        <p>A free-to-run Python bot that checks a Gmail inbox for financial newsletters, summarizes them with an LLM (OpenRouter) including sentiment tagging, and delivers clean summaries to Telegram every hour — running entirely on free infrastructure.</p>
+        <p>A free-to-run Python bot that checks a Gmail inbox for financial newsletters, summarizes them with an LLM (OpenRouter) including sentiment tagging, and delivers clean summaries to Telegram every hour, running entirely on free infrastructure.</p>
         <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">LLM / AI</span>
@@ -453,9 +456,9 @@
     <div>
       <div class="eyebrow">// education</div>
       <h2>University of Twente</h2>
-      <p><strong>BSc Technical Computer Science</strong> — started September 2025, expected graduation around July 2028.</p>
+      <p><strong>BSc Technical Computer Science</strong> · started September 2025, expected graduation around July 2028.</p>
       <p>Current running average on Osiris: 7.25 / 10.</p>
-      <div class="achievement">🏆 2nd place (team) — Twente Algorithmic Programming Contest (TAPC), University of Twente, 2025</div>
+      <div class="achievement">🏆 2nd place (team) · Twente Algorithmic Programming Contest (TAPC), University of Twente, 2025</div>
     </div>
     <div>
       <div class="eyebrow">// grades per course</div>
@@ -484,7 +487,7 @@
         <a href="mailto:christian.abdalla.07@gmail.com">Email</a>
       </div>
     </div>
-    <div class="fine">© <span id="year"></span> Christian Abdalla — built with HTML, CSS &amp; JS. Hosted on GitHub Pages.</div>
+    <div class="fine">© <span id="year"></span> Christian Abdalla. Built with HTML, CSS &amp; JS. Hosted on GitHub Pages.</div>
   </div>
 </footer>
 
