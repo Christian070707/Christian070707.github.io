@@ -55,17 +55,6 @@
     position:relative;
     overflow:hidden;
   }
-  .ticker-tag{
-    font-family:'IBM Plex Mono'; font-size:0.75rem; color:var(--mint);
-    letter-spacing:0.08em; text-transform:uppercase;
-    display:inline-flex; align-items:center; gap:8px;
-    border:1px solid var(--line); padding:5px 12px; border-radius:3px;
-    margin-bottom:28px;
-  }
-  .ticker-tag::before{
-    content:''; width:6px; height:6px; border-radius:50%;
-    background:var(--mint); box-shadow:0 0 8px var(--mint);
-  }
   h1{
     font-family:'IBM Plex Mono';
     font-size:clamp(2.1rem, 5vw, 3.4rem);
@@ -164,6 +153,26 @@
   .exp-item ul{ margin:10px 0 0 18px; color:var(--text-dim); font-size:0.92rem; }
   .exp-item ul li{ margin-bottom:4px; }
 
+  /* FUN STUFF */
+  .social-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .social-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:6px;
+    overflow:hidden; display:flex; flex-direction:column; min-width:0;
+    transition:border-color .15s, transform .15s;
+  }
+  .social-card:hover{ border-color:var(--amber); transform:translateY(-1px); }
+  .social-card .thumb{
+    aspect-ratio:16/9; background:repeating-linear-gradient(135deg, var(--line), var(--line) 10px, #0d1219 10px, #0d1219 20px);
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:12px;
+    font-family:'IBM Plex Mono'; font-size:0.75rem; color:var(--text-dim);
+  }
+  .social-card .body{ padding:18px; display:flex; flex-direction:column; gap:8px; }
+  .social-card h3{ font-family:'IBM Plex Mono'; font-size:1rem; color:var(--text); }
+  .social-card p{ color:var(--text-dim); font-size:0.88rem; }
+  .social-card .body::after{
+    content:'View on LinkedIn →'; font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--amber); margin-top:4px;
+  }
+
   /* FOOTER / CONTACT */
   footer{ padding:56px 0 80px; }
   footer .row{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
@@ -181,11 +190,10 @@
     .wrap{ padding:0 18px; }
     header.hero{ padding:70px 0 44px; }
     section{ padding:44px 0; }
-    .about-grid, .projects{ grid-template-columns:1fr; gap:32px; }
+    .about-grid, .projects, .social-grid{ grid-template-columns:1fr; gap:32px; }
     nav .wrap{ height:auto; padding:12px 18px; flex-wrap:wrap; row-gap:8px; justify-content:center; }
     nav .logo{ width:100%; text-align:center; }
     nav ul{ gap:10px 18px; flex-wrap:wrap; justify-content:center; font-size:0.78rem; }
-    .ticker-tag{ font-size:0.68rem; white-space:normal; }
     .hero p.lead{ font-size:1rem; }
     .btn{ padding:9px 14px; font-size:0.8rem; }
     .sparkline .caption{ flex-direction:column; gap:4px; }
@@ -214,6 +222,7 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#fun-stuff">Fun Stuff</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -221,8 +230,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="ticker-tag mono">open to internships · Technical Computer Science, UT</span>
-    <h1>I build infrastructure that makes markets<br>compute <em>fairly</em>.</h1>
+    <h1>Still a CS student. Already obsessed<br>with <em>low-latency</em> systems.</h1>
     <p class="lead">Technical Computer Science student at the University of Twente, working toward quantitative development. Right now I'm building low-latency C++ infrastructure for a crypto market-making system. This site tracks what else I build, from coursework to personal experiments.</p>
     <div class="hero-links">
       <a class="btn primary" href="#projects">View projects →</a>
@@ -469,6 +477,32 @@
         <li><span>Agile Project Process Dev.</span><span>10.0</span></li>
         <li><span>Agile Project Technical Dev.</span><span>9.7</span></li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<section id="fun-stuff">
+  <div class="wrap">
+    <div class="eyebrow">// fun stuff</div>
+    <h2>Beyond the code</h2>
+    <div class="social-grid">
+
+      <a class="social-card" href="#" target="_blank" rel="noopener">
+        <div class="thumb">Add photo · Optiver event</div>
+        <div class="body">
+          <h3>Optiver Event</h3>
+          <p>Add a short description of the Optiver event here, then link this card to your LinkedIn post.</p>
+        </div>
+      </a>
+
+      <a class="social-card" href="#" target="_blank" rel="noopener">
+        <div class="thumb">Add photo · Rabobank collaboration</div>
+        <div class="body">
+          <h3>Rabobank Collaboration</h3>
+          <p>Add a short description of the Rabobank collaboration here, then link this card to your LinkedIn post.</p>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
