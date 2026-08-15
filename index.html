@@ -24,6 +24,7 @@
     color:var(--text);
     font-family:'Inter', sans-serif;
     line-height:1.6;
+    overflow-x:hidden;
   }
   .mono{ font-family:'IBM Plex Mono', monospace; }
   ::selection{ background:var(--amber); color:var(--bg); }
@@ -123,7 +124,7 @@
     transition:border-color .15s;
   }
   .card:hover{ border-color:var(--amber); }
-  .card-top{ display:flex; justify-content:space-between; align-items:start; gap:10px; }
+  .card-top{ display:flex; justify-content:space-between; align-items:start; gap:10px; flex-wrap:wrap; }
   .card h3{ font-family:'IBM Plex Mono'; font-size:1.05rem; }
   .card .status{
     font-family:'IBM Plex Mono'; font-size:0.65rem; padding:3px 8px; border-radius:3px;
@@ -174,10 +175,26 @@
   .fine{ margin-top:48px; color:var(--text-dim); font-size:0.75rem; font-family:'IBM Plex Mono'; }
 
   @media (max-width:700px){
-    .about-grid, .projects{ grid-template-columns:1fr; }
-    nav ul{ gap:16px; }
-    nav ul li:nth-child(3), nav ul li:nth-child(4){ display:none; }
+    .wrap{ padding:0 18px; }
+    header.hero{ padding:70px 0 44px; }
+    section{ padding:44px 0; }
+    .about-grid, .projects{ grid-template-columns:1fr; gap:32px; }
+    nav .wrap{ height:auto; padding:12px 18px; flex-wrap:wrap; row-gap:8px; justify-content:center; }
+    nav .logo{ width:100%; text-align:center; }
+    nav ul{ gap:10px 18px; flex-wrap:wrap; justify-content:center; font-size:0.78rem; }
+    .ticker-tag{ font-size:0.68rem; white-space:normal; }
+    .hero p.lead{ font-size:1rem; }
+    .btn{ padding:9px 14px; font-size:0.8rem; }
+    .sparkline .caption{ flex-direction:column; gap:4px; }
     .exp-top{ flex-direction:column; align-items:flex-start; gap:2px; }
+    footer .row{ align-items:flex-start; }
+    footer .row > div:first-child{ width:100%; }
+  }
+  @media (max-width:420px){
+    h1{ font-size:1.85rem; }
+    h2{ font-size:1.35rem; }
+    .card{ padding:18px; }
+    .exp-meta{ white-space:normal; }
   }
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
@@ -463,7 +480,7 @@
       </div>
       <div class="socials">
         <a href="https://github.com/Christian070707" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/JOUW-LINKEDIN-PROFIEL" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/christian2007/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="mailto:christian.abdalla.07@gmail.com">Email</a>
       </div>
     </div>
