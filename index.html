@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christian Abdalla — Technical Computer Science &amp; Quant Dev</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0e17;
+    --bg-panel: #10151f;
+    --line: #232a38;
+    --text: #e9e6de;
+    --text-dim: #8b93a3;
+    --amber: #d4a24c;
+    --rose: #c1666b;
+    --mint: #7fb8a0;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  ::selection{ background:var(--amber); color:var(--bg); }
+
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:960px; margin:0 auto; padding:0 24px; }
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,14,23,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{ display:flex; justify-content:space-between; align-items:center; height:60px; }
+  nav .logo{ font-family:'IBM Plex Mono'; font-weight:600; letter-spacing:0.02em; }
+  nav .logo span{ color:var(--amber); }
+  nav ul{ display:flex; gap:28px; list-style:none; font-family:'IBM Plex Mono'; font-size:0.85rem; }
+  nav ul a{ color:var(--text-dim); transition:color .15s; }
+  nav ul a:hover, nav ul a:focus-visible{ color:var(--amber); }
+
+  /* HERO */
+  header.hero{
+    padding:100px 0 60px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .ticker-tag{
+    font-family:'IBM Plex Mono'; font-size:0.75rem; color:var(--mint);
+    letter-spacing:0.08em; text-transform:uppercase;
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--line); padding:5px 12px; border-radius:3px;
+    margin-bottom:28px;
+  }
+  .ticker-tag::before{
+    content:''; width:6px; height:6px; border-radius:50%;
+    background:var(--mint); box-shadow:0 0 8px var(--mint);
+  }
+  h1{
+    font-family:'IBM Plex Mono';
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    font-weight:700;
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    margin-bottom:20px;
+  }
+  h1 em{ font-style:normal; color:var(--amber); }
+  .hero p.lead{
+    max-width:540px; color:var(--text-dim); font-size:1.05rem; margin-bottom:32px;
+  }
+  .hero-links{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono'; font-size:0.85rem;
+    padding:10px 18px; border-radius:3px; border:1px solid var(--line);
+    display:inline-flex; align-items:center; gap:8px;
+    transition:border-color .15s, transform .15s;
+  }
+  .btn:hover, .btn:focus-visible{ border-color:var(--amber); transform:translateY(-1px); }
+  .btn.primary{ background:var(--amber); color:var(--bg); border-color:var(--amber); font-weight:600; }
+  .btn.primary:hover{ opacity:0.9; }
+
+  /* signature: sparkline strip */
+  .sparkline{ margin-top:56px; }
+  .sparkline svg{ width:100%; height:70px; display:block; }
+  .sparkline .caption{
+    font-family:'IBM Plex Mono'; font-size:0.7rem; color:var(--text-dim);
+    display:flex; justify-content:space-between; margin-top:6px;
+  }
+
+  section{ padding:64px 0; border-bottom:1px solid var(--line); }
+  .eyebrow{
+    font-family:'IBM Plex Mono'; font-size:0.75rem; color:var(--amber);
+    letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;
+  }
+  h2{ font-family:'IBM Plex Mono'; font-size:1.6rem; margin-bottom:28px; }
+
+  /* ABOUT */
+  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:48px; }
+  .about-grid p{ color:var(--text-dim); margin-bottom:14px; }
+  .stack-list{ list-style:none; font-family:'IBM Plex Mono'; font-size:0.85rem; }
+  .stack-list li{
+    display:flex; justify-content:space-between; padding:9px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .stack-list li span:last-child{ color:var(--text-dim); }
+
+  /* PROJECTS */
+  .projects{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:6px;
+    padding:24px; display:flex; flex-direction:column; gap:12px;
+    transition:border-color .15s;
+  }
+  .card:hover{ border-color:var(--amber); }
+  .card-top{ display:flex; justify-content:space-between; align-items:start; }
+  .card h3{ font-family:'IBM Plex Mono'; font-size:1.05rem; }
+  .card .status{
+    font-family:'IBM Plex Mono'; font-size:0.65rem; padding:3px 8px; border-radius:3px;
+    background:rgba(127,184,160,0.12); color:var(--mint); white-space:nowrap;
+  }
+  .card p{ color:var(--text-dim); font-size:0.92rem; flex:1; }
+  .tags{ display:flex; flex-wrap:wrap; gap:6px; }
+  .tag{
+    font-family:'IBM Plex Mono'; font-size:0.7rem; color:var(--text-dim);
+    border:1px solid var(--line); padding:3px 8px; border-radius:3px;
+  }
+  .card-links{ display:flex; gap:14px; font-family:'IBM Plex Mono'; font-size:0.8rem; }
+  .card-links a{ color:var(--amber); }
+  .card-links a:hover{ text-decoration:underline; }
+  .snippet{
+    background:#0d1219; border:1px solid var(--line); border-radius:4px;
+    padding:12px 14px; font-family:'IBM Plex Mono'; font-size:0.78rem;
+    color:var(--text-dim); overflow-x:auto; white-space:pre;
+  }
+  .snippet .kw{ color:var(--amber); }
+  .snippet .fn{ color:var(--mint); }
+
+  /* FOOTER / CONTACT */
+  footer{ padding:56px 0 80px; }
+  footer .row{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
+  footer h2{ margin-bottom:8px; }
+  footer p{ color:var(--text-dim); max-width:420px; }
+  .socials{ display:flex; gap:16px; }
+  .socials a{
+    font-family:'IBM Plex Mono'; font-size:0.85rem; color:var(--text-dim);
+    border-bottom:1px solid transparent; padding-bottom:2px;
+  }
+  .socials a:hover, .socials a:focus-visible{ color:var(--amber); border-color:var(--amber); }
+  .fine{ margin-top:48px; color:var(--text-dim); font-size:0.75rem; font-family:'IBM Plex Mono'; }
+
+  @media (max-width:700px){
+    .about-grid, .projects{ grid-template-columns:1fr; }
+    nav ul{ gap:16px; }
+    nav ul li:nth-child(3){ display:none; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">jouw<span>_</span>naam</div>
+    <ul>
+      <li><a href="#about">Over mij</a></li>
+      <li><a href="#projects">Projecten</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="ticker-tag mono">open voor stages · 2e jaars CS</span>
+    <h1>Ik bouw code die getallen<br><em>eerlijk</em> laat rekenen.</h1>
+    <p class="lead">2e jaars Computer Science student op weg naar quantitative development. Deze site is mijn logboek: projecten, code-snippets en de talen/frameworks waar ik mee werk, buiten GitHub en LinkedIn om.</p>
+    <div class="hero-links">
+      <a class="btn primary" href="#projects">Bekijk projecten →</a>
+      <a class="btn mono" href="https://github.com/JOUW-GEBRUIKERSNAAM" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn mono" href="https://gitlab.com/JOUW-GEBRUIKERSNAAM" target="_blank" rel="noopener">GitLab</a>
+      <a class="btn mono" href="https://linkedin.com/in/JOUW-PROFIEL" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+
+    <div class="sparkline">
+      <svg viewBox="0 0 800 70" preserveAspectRatio="none" aria-hidden="true">
+        <polyline points="0,50 40,44 80,52 120,30 160,38 200,22 240,28 280,15 320,24 360,10 400,20 440,8 480,18 520,6 560,14 600,4 640,12 680,2 720,10 760,3 800,8"
+          fill="none" stroke="#d4a24c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+      </svg>
+      <div class="caption">
+        <span>voortgang · commits, opdrachten &amp; projecten</span>
+        <span>jaar 1 → jaar 2</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow">// over mij</div>
+      <h2>Van schoolopdrachten naar quant dev</h2>
+      <p>Ik studeer Computer Science en werk toe naar een carrière als quantitative developer — de plek waar software engineering en financiële modellen samenkomen. Deze site houdt bij wat ik onderweg bouw: schoolprojecten, eigen experimenten en de tools die ik daarbij leer beheersen.</p>
+      <p>Vervang deze tekst door je eigen verhaal: waarom quant dev, wat je al hebt gedaan (wiskunde, statistiek, specifieke vakken), en wat je nu aan het leren bent.</p>
+    </div>
+    <div>
+      <div class="eyebrow">// huidige stack</div>
+      <ul class="stack-list">
+        <li><span>JavaScript</span><span>schoolprojecten</span></li>
+        <li><span>Java</span><span>algoritmes &amp; OOP</span></li>
+        <li><span>HTML / CSS</span><span>front-end basis</span></li>
+        <li><span>Vue.js</span><span>interactieve UI</span></li>
+        <li><span>Bootstrap</span><span>rapid prototyping</span></li>
+        <li><span>Python</span><span>volgende stap →</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">// projecten</div>
+    <h2>Wat ik heb gebouwd</h2>
+    <div class="projects">
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Project Naam #1</h3>
+          <span class="status">actief</span>
+        </div>
+        <p>Korte beschrijving van het project: wat het doet, welk probleem het oplost, en waarom je het gebouwd hebt.</p>
+        <div class="tags">
+          <span class="tag">Vue.js</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">CSS</span>
+        </div>
+        <div class="card-links">
+          <a href="#" target="_blank" rel="noopener">Code →</a>
+          <a href="#" target="_blank" rel="noopener">Live demo →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Project Naam #2</h3>
+          <span class="status">schoolproject</span>
+        </div>
+        <p>Korte beschrijving. Bijvoorbeeld: een Java-opdracht over datastructuren, of een algoritme-implementatie.</p>
+        <div class="tags">
+          <span class="tag">Java</span>
+          <span class="tag">OOP</span>
+        </div>
+        <div class="card-links">
+          <a href="#" target="_blank" rel="noopener">Code →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Project Naam #3</h3>
+          <span class="status">in progress</span>
+        </div>
+        <p>Ideaal voor je eerste quant-georiënteerde project: bijvoorbeeld een simpele backtester, data-analyse script of prijsmodel.</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Data</span>
+        </div>
+        <div class="card-links">
+          <a href="#" target="_blank" rel="noopener">Code →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Snippet: voorbeeldfunctie</h3>
+          <span class="status">snippet</span>
+        </div>
+        <p>Een klein, leesbaar codefragment zegt vaak meer dan een lange beschrijving. Zet hier iets waar je trots op bent.</p>
+        <div class="snippet mono">
+<span class="kw">function</span> <span class="fn">movingAverage</span>(prices, window) {
+  <span class="kw">return</span> prices.map((_, i) =>
+    i < window - 1 ? <span class="kw">null</span> :
+    prices.slice(i - window + 1, i + 1)
+      .reduce((a, b) => a + b) / window
+  );
+}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <div class="eyebrow">// contact</div>
+        <h2>Laten we verbinden</h2>
+        <p>Openstaand voor stages, studentenjobs en interessante gesprekken over quant development.</p>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/JOUW-GEBRUIKERSNAAM" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://gitlab.com/JOUW-GEBRUIKERSNAAM" target="_blank" rel="noopener">GitLab</a>
+        <a href="https://linkedin.com/in/JOUW-PROFIEL" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:jouw@email.com">Email</a>
+      </div>
+    </div>
+    <div class="fine">© <span id="year"></span> — gebouwd met HTML, CSS &amp; JS. Gehost op GitHub Pages.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
