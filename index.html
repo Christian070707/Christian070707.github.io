@@ -132,6 +132,38 @@
   .card-links{ display:flex; gap:14px; font-family:'IBM Plex Mono'; font-size:0.8rem; }
   .card-links a{ color:var(--amber); }
   .card-links a:hover{ text-decoration:underline; }
+  .see-more{
+    align-self:flex-start; margin-top:auto; background:none; border:none; padding:0; cursor:pointer;
+    font-family:'IBM Plex Mono'; font-size:0.8rem; color:var(--amber);
+  }
+  .see-more:hover, .see-more:focus-visible{ text-decoration:underline; }
+
+  /* PROJECT MODAL */
+  .modal-overlay{
+    position:fixed; inset:0; z-index:100; padding:24px;
+    background:rgba(10,14,23,0.75); backdrop-filter:blur(4px);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transition:opacity .15s;
+  }
+  .modal-overlay.open{ opacity:1; pointer-events:auto; }
+  .modal-card{
+    position:relative; background:var(--bg-panel); border:1px solid var(--line); border-radius:8px;
+    padding:32px; max-width:560px; width:100%; max-height:80vh; overflow-y:auto;
+    transform:translateY(10px); transition:transform .15s;
+  }
+  .modal-overlay.open .modal-card{ transform:translateY(0); }
+  .modal-card .card-top{ margin-bottom:14px; padding-right:28px; }
+  .modal-card h3{ font-family:'IBM Plex Mono'; font-size:1.2rem; }
+  .modal-card p{ color:var(--text-dim); font-size:0.95rem; margin-bottom:18px; }
+  .modal-card .tags{ margin-bottom:18px; }
+  .modal-close{
+    position:absolute; top:14px; right:14px; width:28px; height:28px;
+    display:flex; align-items:center; justify-content:center;
+    background:none; border:1px solid var(--line); border-radius:4px; cursor:pointer;
+    font-family:'IBM Plex Mono'; font-size:0.9rem; color:var(--text-dim);
+    transition:border-color .15s, color .15s;
+  }
+  .modal-close:hover, .modal-close:focus-visible{ border-color:var(--amber); color:var(--amber); }
   .snippet{
     background:#0d1219; border:1px solid var(--line); border-radius:4px;
     padding:12px 14px; font-family:'IBM Plex Mono'; font-size:0.78rem;
@@ -166,6 +198,7 @@
     display:flex; align-items:center; justify-content:center; text-align:center; padding:12px;
     font-family:'IBM Plex Mono'; font-size:0.75rem; color:var(--text-dim);
   }
+  .social-card .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
   .social-card .body{ padding:18px; display:flex; flex-direction:column; gap:8px; }
   .social-card h3{ font-family:'IBM Plex Mono'; font-size:1rem; color:var(--text); }
   .social-card p{ color:var(--text-dim); font-size:0.88rem; }
@@ -284,13 +317,13 @@
           <h3>Hyperliquid: C++ Market Making Infra</h3>
           <span class="status">active</span>
         </div>
-        <p>Latency-sensitive C++ trading infrastructure for a crypto market-making system: order book management, market data handling, and quoting/execution logic driven by real-time websocket data. Includes benchmarks for critical-path latency and a PostgreSQL/TimescaleDB time-series database (with separate production and test environments) hosted on a Debian server, accessed via SSH.</p>
+        <p>Latency-sensitive C++ trading infrastructure for a crypto market-making system: real-time order book, market data and quoting/execution logic.</p>
         <div class="tags">
           <span class="tag">C++</span>
           <span class="tag">Market Making</span>
           <span class="tag">WebSockets</span>
-          <span class="tag">TimescaleDB</span>
         </div>
+        <button class="see-more mono" type="button" data-project="hyperliquid">See more →</button>
       </div>
 
       <div class="card">
@@ -298,12 +331,13 @@
           <h3>C++ Limit Order Book &amp; Simulator</h3>
           <span class="status">active</span>
         </div>
-        <p>A C++ limit order book implementing order matching, bid/ask management, and trade execution logic, built to model market microstructure and order book mechanics in a controlled environment. Matching runs on price-time priority.</p>
+        <p>A C++ limit order book implementing order matching, bid/ask management and trade execution to model market microstructure.</p>
         <div class="tags">
           <span class="tag">C++</span>
           <span class="tag">Order Matching</span>
           <span class="tag">Data Structures</span>
         </div>
+        <button class="see-more mono" type="button" data-project="orderbook">See more →</button>
       </div>
 
       <div class="card">
@@ -311,12 +345,13 @@
           <h3>Quarto: Java TCP Game Server</h3>
           <span class="status">completed</span>
         </div>
-        <p>Full Java TCP networking stack (server and client) for the board game Quarto: a custom application protocol, per-session state machine, thread-safe matchmaking, defensive input parsing, and disconnect handling. The server acts as single source of truth, re-validating every move server-side.</p>
+        <p>Full Java TCP networking stack for the board game Quarto: custom protocol, per-session state machine and thread-safe matchmaking.</p>
         <div class="tags">
           <span class="tag">Java</span>
           <span class="tag">TCP Sockets</span>
           <span class="tag">Concurrency</span>
         </div>
+        <button class="see-more mono" type="button" data-project="quarto">See more →</button>
       </div>
 
       <div class="card">
@@ -324,16 +359,13 @@
           <h3>RISE 5: Fullstack Web App</h3>
           <span class="status">completed</span>
         </div>
-        <p>5-person Scrum team, fullstack web application (Java, Vue, Bootstrap) for an external stakeholder, live-deployed on an Ubuntu server. Personally built new pages end-to-end and designed the PostgreSQL database: 15+ tables, role-based access control, and prepared statements.</p>
+        <p>5-person Scrum team building a fullstack web app for an external stakeholder, live-deployed on an Ubuntu server.</p>
         <div class="tags">
           <span class="tag">Java</span>
           <span class="tag">Vue.js</span>
           <span class="tag">PostgreSQL</span>
-          <span class="tag">Scrum</span>
         </div>
-        <div class="card-links">
-          <a href="https://rise5.paas.hosted-by-previder.com/rise/" target="_blank" rel="noopener">Live demo →</a>
-        </div>
+        <button class="see-more mono" type="button" data-project="rise5">See more →</button>
       </div>
 
       <div class="card">
@@ -341,12 +373,13 @@
           <h3>Scuba Chat: Ad-Hoc Network</h3>
           <span class="status">completed</span>
         </div>
-        <p>4-person team, a fully distributed, server-less multi-hop chat network over an emulated underwater acoustic physical layer. Personally designed a custom bit-packed packet/frame header (sequence number, addressing, fragmentation) and built the text-based user interface.</p>
+        <p>4-person team building a fully distributed, server-less multi-hop chat network over an emulated underwater acoustic layer.</p>
         <div class="tags">
           <span class="tag">Java</span>
           <span class="tag">Distributed Systems</span>
           <span class="tag">Protocol Design</span>
         </div>
+        <button class="see-more mono" type="button" data-project="scuba">See more →</button>
       </div>
 
       <div class="card">
@@ -354,15 +387,13 @@
           <h3>AssetAnalyzer: Stock Dashboard</h3>
           <span class="status">completed</span>
         </div>
-        <p>A Python/Streamlit dashboard that loads historical price data and computes key financial metrics (CAGR, Sharpe ratio, max drawdown, volatility), with interactive Plotly visualizations of price trends and return distributions. Includes unit tests for the calculation logic.</p>
+        <p>A Python/Streamlit dashboard computing key financial metrics with interactive Plotly visualizations of price and return data.</p>
         <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">Streamlit</span>
           <span class="tag">Financial Analysis</span>
         </div>
-        <div class="card-links">
-          <a href="https://github.com/Christian070707/AssetAnalyzer" target="_blank" rel="noopener">Code →</a>
-        </div>
+        <button class="see-more mono" type="button" data-project="assetanalyzer">See more →</button>
       </div>
 
       <div class="card">
@@ -370,12 +401,13 @@
           <h3>Financial Newsletter Bot</h3>
           <span class="status">completed</span>
         </div>
-        <p>A free-to-run Python bot that checks a Gmail inbox for financial newsletters, summarizes them with an LLM (OpenRouter) including sentiment tagging, and delivers clean summaries to Telegram every hour, running entirely on free infrastructure.</p>
+        <p>A free-to-run Python bot that summarizes financial newsletters with an LLM and delivers them to Telegram every hour.</p>
         <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">LLM / AI</span>
           <span class="tag">Telegram API</span>
         </div>
+        <button class="see-more mono" type="button" data-project="newsletterbot">See more →</button>
       </div>
 
       <div class="card">
@@ -383,12 +415,13 @@
           <h3>Parking Lot Prediction</h3>
           <span class="status progress">early stage</span>
         </div>
-        <p>Manual data collection of parking spot occupancy on campus via a self-built Google Forms pipeline (with API-triggered recurring rounds) and an early Python heatmap. Goal: a linear regression model predicting where and when spots will be free.</p>
+        <p>Manual data collection of campus parking occupancy via a self-built Google Forms pipeline and an early Python heatmap.</p>
         <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">Data Collection</span>
           <span class="tag">Google API</span>
         </div>
+        <button class="see-more mono" type="button" data-project="parking">See more →</button>
       </div>
 
       <div class="card">
@@ -487,19 +520,19 @@
     <h2>Beyond the code</h2>
     <div class="social-grid">
 
-      <a class="social-card" href="#" target="_blank" rel="noopener">
-        <div class="thumb">Add photo · Optiver event</div>
+      <a class="social-card" href="https://lnkd.in/p/eNZp5G8g" target="_blank" rel="noopener">
+        <div class="thumb"><img src="img/optiver-event.jpg" alt="Optiver's Frontier AI on a Live Trading Floor event in Amsterdam" loading="lazy"></div>
         <div class="body">
-          <h3>Optiver Event</h3>
-          <p>Add a short description of the Optiver event here, then link this card to your LinkedIn post.</p>
+          <h3>Optiver: Frontier AI on a Live Trading Floor</h3>
+          <p>An evening at Optiver in Amsterdam learning how AI is applied across trading, research and technology, and talking with people across trading, quant research and tech about ideas for my own market-making project.</p>
         </div>
       </a>
 
-      <a class="social-card" href="#" target="_blank" rel="noopener">
-        <div class="thumb">Add photo · Rabobank collaboration</div>
+      <a class="social-card" href="https://www.linkedin.com/posts/christian2007_rabobank-bonhoeffercollege-stuntdag-activity-7321174865875529729-Ky4l" target="_blank" rel="noopener">
+        <div class="thumb"><img src="img/rabobank-collab.jpg" alt="Ice cream stand sponsored by Rabobank at the Bonhoeffer College stuntdag" loading="lazy"></div>
         <div class="body">
-          <h3>Rabobank Collaboration</h3>
-          <p>Add a short description of the Rabobank collaboration here, then link this card to your LinkedIn post.</p>
+          <h3>Rabobank Members' Council: First Project</h3>
+          <p>My first project as a new member of Rabobank's Members' Council, and my last for Bonhoeffer College: an ice cream stand sponsored by Rabobank plus a photobooth for the school's stuntdag, a fitting close to my time there and a great start with the council.</p>
         </div>
       </a>
 
@@ -525,8 +558,121 @@
   </div>
 </footer>
 
+<div class="modal-overlay" id="project-modal">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+    <button class="modal-close" type="button" aria-label="Close">✕</button>
+    <div class="card-top">
+      <h3 id="modal-title"></h3>
+      <span class="status" id="modal-status"></span>
+    </div>
+    <p id="modal-desc"></p>
+    <div class="tags" id="modal-tags"></div>
+    <div class="card-links" id="modal-links"></div>
+  </div>
+</div>
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  const PROJECTS = {
+    hyperliquid: {
+      title: "Hyperliquid: C++ Market Making Infra",
+      status: "active", statusClass: "",
+      desc: "Latency-sensitive C++ trading infrastructure for a crypto market-making system: order book management, market data handling, and quoting/execution logic driven by real-time websocket data. Includes benchmarks for critical-path latency and a PostgreSQL/TimescaleDB time-series database (with separate production and test environments) hosted on a Debian server, accessed via SSH.",
+      tags: ["C++", "Market Making", "WebSockets", "TimescaleDB"],
+      links: []
+    },
+    orderbook: {
+      title: "C++ Limit Order Book & Simulator",
+      status: "active", statusClass: "",
+      desc: "A C++ limit order book implementing order matching, bid/ask management, and trade execution logic, built to model market microstructure and order book mechanics in a controlled environment. Matching runs on price-time priority.",
+      tags: ["C++", "Order Matching", "Data Structures"],
+      links: []
+    },
+    quarto: {
+      title: "Quarto: Java TCP Game Server",
+      status: "completed", statusClass: "",
+      desc: "Full Java TCP networking stack (server and client) for the board game Quarto: a custom application protocol, per-session state machine, thread-safe matchmaking, defensive input parsing, and disconnect handling. The server acts as single source of truth, re-validating every move server-side.",
+      tags: ["Java", "TCP Sockets", "Concurrency"],
+      links: []
+    },
+    rise5: {
+      title: "RISE 5: Fullstack Web App",
+      status: "completed", statusClass: "",
+      desc: "5-person Scrum team, fullstack web application (Java, Vue, Bootstrap) for an external stakeholder, live-deployed on an Ubuntu server. Personally built new pages end-to-end and designed the PostgreSQL database: 15+ tables, role-based access control, and prepared statements.",
+      tags: ["Java", "Vue.js", "PostgreSQL", "Scrum"],
+      links: [{ label: "Live demo →", url: "https://rise5.paas.hosted-by-previder.com/rise/" }]
+    },
+    scuba: {
+      title: "Scuba Chat: Ad-Hoc Network",
+      status: "completed", statusClass: "",
+      desc: "4-person team, a fully distributed, server-less multi-hop chat network over an emulated underwater acoustic physical layer. Personally designed a custom bit-packed packet/frame header (sequence number, addressing, fragmentation) and built the text-based user interface.",
+      tags: ["Java", "Distributed Systems", "Protocol Design"],
+      links: []
+    },
+    assetanalyzer: {
+      title: "AssetAnalyzer: Stock Dashboard",
+      status: "completed", statusClass: "",
+      desc: "A Python/Streamlit dashboard that loads historical price data and computes key financial metrics (CAGR, Sharpe ratio, max drawdown, volatility), with interactive Plotly visualizations of price trends and return distributions. Includes unit tests for the calculation logic.",
+      tags: ["Python", "Streamlit", "Financial Analysis"],
+      links: [{ label: "Code →", url: "https://github.com/Christian070707/AssetAnalyzer" }]
+    },
+    newsletterbot: {
+      title: "Financial Newsletter Bot",
+      status: "completed", statusClass: "",
+      desc: "A free-to-run Python bot that checks a Gmail inbox for financial newsletters, summarizes them with an LLM (OpenRouter) including sentiment tagging, and delivers clean summaries to Telegram every hour, running entirely on free infrastructure.",
+      tags: ["Python", "LLM / AI", "Telegram API"],
+      links: []
+    },
+    parking: {
+      title: "Parking Lot Prediction",
+      status: "early stage", statusClass: "progress",
+      desc: "Manual data collection of parking spot occupancy on campus via a self-built Google Forms pipeline (with API-triggered recurring rounds) and an early Python heatmap. Goal: a linear regression model predicting where and when spots will be free.",
+      tags: ["Python", "Data Collection", "Google API"],
+      links: []
+    }
+  };
+
+  (function(){
+    const overlay = document.getElementById('project-modal');
+    const modalCard = overlay.querySelector('.modal-card');
+    const titleEl = document.getElementById('modal-title');
+    const statusEl = document.getElementById('modal-status');
+    const descEl = document.getElementById('modal-desc');
+    const tagsEl = document.getElementById('modal-tags');
+    const linksEl = document.getElementById('modal-links');
+    let lastFocused = null;
+
+    function openModal(id){
+      const p = PROJECTS[id];
+      if(!p) return;
+      titleEl.textContent = p.title;
+      statusEl.textContent = p.status;
+      statusEl.className = 'status' + (p.statusClass ? ' ' + p.statusClass : '');
+      descEl.textContent = p.desc;
+      tagsEl.innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+      linksEl.innerHTML = p.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('');
+      lastFocused = document.activeElement;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      modalCard.focus();
+    }
+
+    function closeModal(){
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      if(lastFocused) lastFocused.focus();
+    }
+
+    document.querySelectorAll('.see-more').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.project));
+    });
+    overlay.querySelector('.modal-close').addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+    });
+  })();
 </script>
 </body>
 </html>
