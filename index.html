@@ -424,23 +424,6 @@
         <button class="see-more mono" type="button" data-project="parking">See more →</button>
       </div>
 
-      <div class="card">
-        <div class="card-top">
-          <h3>Snippet: price-time priority</h3>
-          <span class="status">snippet</span>
-        </div>
-        <p>The matching strategy behind the limit order book: at equal price, the order that arrived first wins.</p>
-        <div class="snippet mono">
-<span class="cm">// simplified: match against best price level, FIFO within that level</span>
-<span class="kw">while</span> (!book.<span class="fn">empty</span>() &amp;&amp; book.<span class="fn">bestPrice</span>() <span class="kw">crosses</span> incoming.price) {
-    <span class="kw">auto&amp;</span> level = book.<span class="fn">bestLevel</span>();
-    <span class="kw">auto&amp;</span> resting = level.orders.<span class="fn">front</span>();  <span class="cm">// std::deque</span>
-    <span class="kw">auto</span> fillQty = <span class="fn">min</span>(resting.qty, incoming.qty);
-    <span class="fn">execute</span>(resting, incoming, fillQty);
-}
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -579,7 +562,7 @@
       title: "Hyperliquid: C++ Market Making Infra",
       status: "active", statusClass: "",
       desc: "Latency-sensitive C++ trading infrastructure for a crypto market-making system: order book management, market data handling, and quoting/execution logic driven by real-time websocket data. Includes benchmarks for critical-path latency and a PostgreSQL/TimescaleDB time-series database (with separate production and test environments) hosted on a Debian server, accessed via SSH.",
-      tags: ["C++", "Market Making", "WebSockets", "TimescaleDB"],
+      tags: ["C++", "Market Making", "WebSockets", "TimescaleDB", "Python", "PostgreSQL", "simdjson"],
       links: []
     },
     orderbook: {
@@ -600,7 +583,7 @@
       title: "RISE 5: Fullstack Web App",
       status: "completed", statusClass: "",
       desc: "5-person Scrum team, fullstack web application (Java, Vue, Bootstrap) for an external stakeholder, live-deployed on an Ubuntu server. Personally built new pages end-to-end and designed the PostgreSQL database: 15+ tables, role-based access control, and prepared statements.",
-      tags: ["Java", "Vue.js", "PostgreSQL", "Scrum"],
+      tags: ["Java", "Vue.js", "PostgreSQL", "Scrum", "JavaScript", "Agile"],
       links: [{ label: "Live demo →", url: "https://rise5.paas.hosted-by-previder.com/rise/" }]
     },
     scuba: {
