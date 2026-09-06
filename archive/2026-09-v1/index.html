@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christian Abdalla · Technical Computer Science &amp; Quant Dev</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0e17;
+    --bg-panel: #10151f;
+    --line: #232a38;
+    --text: #e9e6de;
+    --text-dim: #8b93a3;
+    --amber: #d4a24c;
+    --rose: #c1666b;
+    --mint: #7fb8a0;
+    --slate: #7a93b8;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; overflow-x:hidden; width:100%; }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+    width:100%;
+    overflow-wrap:break-word;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  ::selection{ background:var(--amber); color:var(--bg); }
+
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:960px; margin:0 auto; padding:0 24px; }
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,14,23,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{ display:flex; justify-content:space-between; align-items:center; height:60px; }
+  nav .logo{ font-family:'IBM Plex Mono'; font-weight:600; letter-spacing:0.02em; }
+  nav .logo span{ color:var(--amber); }
+  nav ul{ display:flex; gap:28px; list-style:none; font-family:'IBM Plex Mono'; font-size:0.85rem; }
+  nav ul a{ color:var(--text-dim); transition:color .15s; }
+  nav ul a:hover, nav ul a:focus-visible{ color:var(--amber); }
+
+  /* HERO */
+  header.hero{
+    padding:100px 0 60px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  h1{
+    font-family:'IBM Plex Mono';
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    font-weight:700;
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    margin-bottom:20px;
+  }
+  h1 em{ font-style:normal; color:var(--amber); }
+  .hero p.lead{
+    max-width:560px; color:var(--text-dim); font-size:1.05rem; margin-bottom:32px;
+  }
+  .hero-links{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono'; font-size:0.85rem;
+    padding:10px 18px; border-radius:3px; border:1px solid var(--line);
+    display:inline-flex; align-items:center; gap:8px;
+    transition:border-color .15s, transform .15s;
+  }
+  .btn:hover, .btn:focus-visible{ border-color:var(--amber); transform:translateY(-1px); }
+  .btn.primary{ background:var(--amber); color:var(--bg); border-color:var(--amber); font-weight:600; }
+  .btn.primary:hover{ opacity:0.9; }
+
+  /* signature: sparkline strip */
+  .sparkline{ margin-top:56px; }
+  .sparkline svg{ width:100%; height:70px; display:block; }
+  .sparkline .caption{
+    font-family:'IBM Plex Mono'; font-size:0.7rem; color:var(--text-dim);
+    display:flex; justify-content:space-between; margin-top:6px;
+  }
+
+  section{ padding:64px 0; border-bottom:1px solid var(--line); }
+  .eyebrow{
+    font-family:'IBM Plex Mono'; font-size:0.75rem; color:var(--amber);
+    letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;
+  }
+  h2{ font-family:'IBM Plex Mono'; font-size:1.6rem; margin-bottom:28px; }
+
+  /* ABOUT / EDUCATION (shared two-column layout) */
+  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:48px; }
+  .about-grid p{ color:var(--text-dim); margin-bottom:14px; }
+  .stack-list{ list-style:none; font-family:'IBM Plex Mono'; font-size:0.85rem; }
+  .stack-list li{
+    display:flex; justify-content:space-between; padding:9px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .stack-list li span:last-child{ color:var(--text-dim); text-align:right; }
+  .achievement{
+    font-family:'IBM Plex Mono'; font-size:0.85rem; color:var(--mint);
+    border-left:2px solid var(--mint); padding:2px 0 2px 12px; margin-top:18px;
+  }
+
+  /* PROJECTS */
+  .projects{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:6px;
+    padding:24px; display:flex; flex-direction:column; gap:12px;
+    transition:border-color .15s;
+  }
+  .card:hover{ border-color:var(--amber); }
+  .card, .about-grid > div{ min-width:0; }
+  .card-top{ display:flex; justify-content:space-between; align-items:start; gap:10px; flex-wrap:wrap; }
+  .card h3{ font-family:'IBM Plex Mono'; font-size:1.05rem; }
+  .status{
+    font-family:'IBM Plex Mono'; font-size:0.65rem; padding:3px 8px; border-radius:3px;
+    background:rgba(127,184,160,0.12); color:var(--mint); white-space:nowrap;
+  }
+  .status.completed{ background:rgba(122,147,184,0.12); color:var(--slate); }
+  .status.progress{ background:rgba(212,162,76,0.12); color:var(--amber); }
+  .card p{ color:var(--text-dim); font-size:0.92rem; flex:1; }
+  .tags{ display:flex; flex-wrap:wrap; gap:6px; }
+  .tag{
+    font-family:'IBM Plex Mono'; font-size:0.7rem; color:var(--text-dim);
+    border:1px solid var(--line); padding:3px 8px; border-radius:3px;
+  }
+  .card-links{ display:flex; gap:14px; font-family:'IBM Plex Mono'; font-size:0.8rem; }
+  .card-links a{ color:var(--amber); }
+  .card-links a:hover{ text-decoration:underline; }
+  .see-more{
+    align-self:flex-start; margin-top:auto; background:none; border:none; padding:0; cursor:pointer;
+    font-family:'IBM Plex Mono'; font-size:0.8rem; color:var(--amber);
+  }
+  .see-more:hover, .see-more:focus-visible{ text-decoration:underline; }
+
+  /* PROJECT MODAL */
+  .modal-overlay{
+    position:fixed; inset:0; z-index:100; padding:24px;
+    background:rgba(10,14,23,0.75); backdrop-filter:blur(4px);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transition:opacity .15s;
+  }
+  .modal-overlay.open{ opacity:1; pointer-events:auto; }
+  .modal-card{
+    position:relative; background:var(--bg-panel); border:1px solid var(--line); border-radius:8px;
+    padding:32px; max-width:560px; width:100%; max-height:80vh; overflow-y:auto;
+    transform:translateY(10px); transition:transform .15s;
+  }
+  .modal-overlay.open .modal-card{ transform:translateY(0); }
+  .modal-card .card-top{ margin-bottom:14px; padding-right:28px; }
+  .modal-card h3{ font-family:'IBM Plex Mono'; font-size:1.2rem; }
+  .modal-card p{ color:var(--text-dim); font-size:0.95rem; margin-bottom:18px; }
+  .modal-card .tags{ margin-bottom:18px; }
+  .modal-close{
+    position:absolute; top:14px; right:14px; width:28px; height:28px;
+    display:flex; align-items:center; justify-content:center;
+    background:none; border:1px solid var(--line); border-radius:4px; cursor:pointer;
+    font-family:'IBM Plex Mono'; font-size:0.9rem; color:var(--text-dim);
+    transition:border-color .15s, color .15s;
+  }
+  .modal-close:hover, .modal-close:focus-visible{ border-color:var(--amber); color:var(--amber); }
+  .snippet{
+    background:#0d1219; border:1px solid var(--line); border-radius:4px;
+    padding:12px 14px; font-family:'IBM Plex Mono'; font-size:0.78rem;
+    color:var(--text-dim); overflow-x:auto; white-space:pre;
+  }
+  .snippet .kw{ color:var(--amber); }
+  .snippet .fn{ color:var(--mint); }
+  .snippet .cm{ color:var(--rose); }
+
+  /* EXPERIENCE */
+  .exp-list{ display:flex; flex-direction:column; }
+  .exp-item{ padding:20px 0; border-bottom:1px solid var(--line); }
+  .exp-item:first-child{ padding-top:0; }
+  .exp-item:last-child{ border-bottom:none; padding-bottom:0; }
+  .exp-top{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; }
+  .exp-top h3{ font-family:'IBM Plex Mono'; font-size:1rem; }
+  .exp-meta{ font-family:'IBM Plex Mono'; font-size:0.75rem; color:var(--text-dim); white-space:nowrap; }
+  .exp-org{ font-family:'IBM Plex Mono'; font-size:0.8rem; color:var(--amber); margin-top:4px; }
+  .exp-item ul{ margin:10px 0 0 18px; color:var(--text-dim); font-size:0.92rem; }
+  .exp-item ul li{ margin-bottom:4px; }
+
+  /* FUN STUFF */
+  .social-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .social-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:6px;
+    overflow:hidden; display:flex; flex-direction:column; min-width:0;
+    transition:border-color .15s, transform .15s;
+  }
+  .social-card:hover{ border-color:var(--amber); transform:translateY(-1px); }
+  .social-card .thumb{
+    aspect-ratio:16/9; background:repeating-linear-gradient(135deg, var(--line), var(--line) 10px, #0d1219 10px, #0d1219 20px);
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:12px;
+    font-family:'IBM Plex Mono'; font-size:0.75rem; color:var(--text-dim);
+  }
+  .social-card .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .social-card .body{ padding:18px; display:flex; flex-direction:column; gap:8px; }
+  .social-card h3{ font-family:'IBM Plex Mono'; font-size:1rem; color:var(--text); }
+  .social-card p{ color:var(--text-dim); font-size:0.88rem; }
+  .social-card .body::after{
+    content:'View on LinkedIn →'; font-family:'IBM Plex Mono'; font-size:0.78rem; color:var(--amber); margin-top:4px;
+  }
+
+  /* FOOTER / CONTACT */
+  footer{ padding:56px 0 80px; }
+  footer .row{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
+  footer h2{ margin-bottom:8px; }
+  footer p{ color:var(--text-dim); max-width:420px; }
+  .socials{ display:flex; gap:16px; flex-wrap:wrap; }
+  .socials a{
+    font-family:'IBM Plex Mono'; font-size:0.85rem; color:var(--text-dim);
+    border-bottom:1px solid transparent; padding-bottom:2px;
+  }
+  .socials a:hover, .socials a:focus-visible{ color:var(--amber); border-color:var(--amber); }
+  .fine{ margin-top:48px; color:var(--text-dim); font-size:0.75rem; font-family:'IBM Plex Mono'; }
+
+  @media (max-width:700px){
+    .wrap{ padding:0 18px; }
+    header.hero{ padding:70px 0 44px; }
+    section{ padding:44px 0; }
+    .about-grid, .projects, .social-grid{ grid-template-columns:1fr; gap:32px; }
+    nav .wrap{ height:auto; padding:12px 18px; flex-wrap:wrap; row-gap:8px; justify-content:center; }
+    nav .logo{ width:100%; text-align:center; }
+    nav ul{ gap:10px 18px; flex-wrap:wrap; justify-content:center; font-size:0.78rem; }
+    .hero p.lead{ font-size:1rem; }
+    .btn{ padding:9px 14px; font-size:0.8rem; }
+    .sparkline .caption{ flex-direction:column; gap:4px; }
+    .exp-top{ flex-direction:column; align-items:flex-start; gap:2px; }
+    footer .row{ align-items:flex-start; }
+    footer .row > div:first-child{ width:100%; }
+  }
+  @media (max-width:420px){
+    h1{ font-size:1.85rem; }
+    h2{ font-size:1.35rem; }
+    .card{ padding:18px; }
+    .exp-meta{ white-space:normal; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">christian<span>_</span>abdalla</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#fun-stuff">Fun Stuff</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Still a CS student. Already obsessed<br>with <em>low-latency</em> systems.</h1>
+    <p class="lead">Technical Computer Science student at the University of Twente, working toward quantitative development. Right now I'm building low-latency C++ infrastructure for a crypto market-making system. This site tracks what else I build, from coursework to personal experiments.</p>
+    <div class="hero-links">
+      <a class="btn primary" href="#projects">View projects →</a>
+      <a class="btn mono" href="https://github.com/Christian070707" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn mono" href="https://www.linkedin.com/in/christian2007/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+
+    <div class="sparkline">
+      <svg viewBox="0 0 800 70" preserveAspectRatio="none" aria-hidden="true">
+        <polyline points="0,50 40,44 80,52 120,30 160,38 200,22 240,28 280,15 320,24 360,10 400,20 440,8 480,18 520,6 560,14 600,4 640,12 680,2 720,10 760,3 800,8"
+          fill="none" stroke="#d4a24c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+      </svg>
+      <div class="caption">
+        <span>progress · commits, coursework &amp; projects</span>
+        <span>year 1 → year 2</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow">// about me</div>
+      <h2>From coursework to quant dev</h2>
+      <p>I study Technical Computer Science at the University of Twente and I'm working toward a career as a quantitative developer, where low-latency systems engineering meets financial models. I'm currently building C++ trading infrastructure for a cryptocurrency market-making system: real-time order book processing, a PostgreSQL/TimescaleDB time-series database, and benchmarks for critical-path latency and throughput.</p>
+      <p>Alongside my studies I'm an Investment Analyst, Financial Software Developer and External Affairs Board Member at investment society SBV Duitenberg, and a member of Rabobank's Members' Council. This site tracks what I build along the way: coursework, personal experiments, and the tools I pick up doing it.</p>
+    </div>
+    <div>
+      <div class="eyebrow">// tech stack</div>
+      <ul class="stack-list">
+        <li><span>C++</span><span>hot-path &amp; low-latency</span></li>
+        <li><span>Python</span><span>data &amp; quant research</span></li>
+        <li><span>Java</span><span>backend &amp; networking</span></li>
+        <li><span>SQL / PostgreSQL</span><span>databases &amp; TimescaleDB</span></li>
+        <li><span>Git &amp; CMake</span><span>tooling</span></li>
+        <li><span>Linux</span><span>Fedora (daily driver), Debian (website/database hosting)</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">// projects</div>
+    <h2>What I've built</h2>
+    <div class="projects">
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Hyperliquid: C++ Market Making Infra</h3>
+          <span class="status">active</span>
+        </div>
+        <p>Latency-sensitive C++ trading infrastructure for a crypto market-making system: real-time order book, market data and quoting/execution logic.</p>
+        <div class="tags">
+          <span class="tag">C++</span>
+          <span class="tag">Market Making</span>
+          <span class="tag">WebSockets</span>
+        </div>
+        <button class="see-more mono" type="button" data-project="hyperliquid">See more →</button>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>C++ Limit Order Book &amp; Simulator</h3>
+          <span class="status">active</span>
+        </div>
+        <p>A C++ limit order book implementing order matching, bid/ask management and trade execution to model market microstructure.</p>
+        <div class="tags">
+          <span class="tag">C++</span>
+          <span class="tag">Order Matching</span>
+          <span class="tag">Data Structures</span>
+        </div>
+        <button class="see-more mono" type="button" data-project="orderbook">See more →</button>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Quarto: Java TCP Game Server</h3>
+          <span class="status completed">completed</span>
+        </div>
+        <p>Full Java TCP networking stack for the board game Quarto: custom protocol, per-session state machine and thread-safe matchmaking.</p>
+        <div class="tags">
+          <span class="tag">Java</span>
+          <span class="tag">TCP Sockets</span>
+          <span class="tag">Concurrency</span>
+        </div>
+        <button class="see-more mono" type="button" data-project="quarto">See more →</button>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>RISE 5: Fullstack Web App</h3>
+          <span class="status completed">completed</span>
+        </div>
+        <p>5-person Scrum team building a fullstack web app for an external stakeholder, live-deployed on an Ubuntu server.</p>
+        <div class="tags">
+          <span class="tag">Java</span>
+          <span class="tag">Vue.js</span>
+          <span class="tag">PostgreSQL</span>
+        </div>
+        <button class="see-more mono" type="button" data-project="rise5">See more →</button>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Scuba Chat: Ad-Hoc Network</h3>
+          <span class="status completed">completed</span>
+        </div>
+        <p>4-person team building a fully distributed, server-less multi-hop chat network over an emulated underwater acoustic layer.</p>
+        <div class="tags">
+          <span class="tag">Java</span>
+          <span class="tag">Distributed Systems</span>
+          <span class="tag">Protocol Design</span>
+        </div>
+        <button class="see-more mono" type="button" data-project="scuba">See more →</button>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>AssetAnalyzer: Stock Dashboard</h3>
+          <span class="status completed">completed</span>
+        </div>
+        <p>A Python/Streamlit dashboard computing key financial metrics with interactive Plotly visualizations of price and return data.</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">Financial Analysis</span>
+        </div>
+        <button class="see-more mono" type="button" data-project="assetanalyzer">See more →</button>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Financial Newsletter Bot</h3>
+          <span class="status completed">completed</span>
+        </div>
+        <p>A free-to-run Python bot that summarizes financial newsletters with an LLM and delivers them to Telegram every hour.</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">LLM / AI</span>
+          <span class="tag">Telegram API</span>
+        </div>
+        <button class="see-more mono" type="button" data-project="newsletterbot">See more →</button>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Parking Lot Prediction</h3>
+          <span class="status progress">early stage</span>
+        </div>
+        <p>Manual data collection of campus parking occupancy via a self-built Google Forms pipeline and an early Python heatmap.</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Data Collection</span>
+          <span class="tag">Google API</span>
+        </div>
+        <button class="see-more mono" type="button" data-project="parking">See more →</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow">// experience</div>
+    <h2>Where I contribute</h2>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-top">
+          <h3>SBV Duitenberg</h3>
+          <span class="exp-meta">Enschede · Nov 2025 – present</span>
+        </div>
+        <div class="exp-org">Investment Analyst, Financial Software Developer &amp; External Affairs Board Member</div>
+        <ul>
+          <li>Researches and pitches investment opportunities through weekly equity analyses and company deep-dives</li>
+          <li>Contributes to a financial analysis platform for automated data ingestion and AI-assisted company analysis (FastAPI, LangChain, PostgreSQL)</li>
+          <li>Leads external relations and partnerships as External Affairs board member</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-top">
+          <h3>Rabobank</h3>
+          <span class="exp-meta">Enschede · Nov 2024 – present</span>
+        </div>
+        <div class="exp-org">Member of the Members' Council</div>
+        <ul>
+          <li>Analyzes bank policy documents and provides feedback for strategic Members' Council discussions</li>
+          <li>Participates in the Youth Forum, tracking trends in technology, financial services, and digital assets</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-top">
+          <h3>Yara Food B.V.</h3>
+          <span class="exp-meta">Enschede · Jun 2025 – Sep 2025</span>
+        </div>
+        <div class="exp-org">Data Intern</div>
+        <ul>
+          <li>Analyzed sales and procurement datasets</li>
+          <li>Built Python and Power BI visualizations to support business decisions</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow">// education</div>
+      <h2>University of Twente</h2>
+      <p><strong>BSc Technical Computer Science</strong> · started September 2025, expected graduation around July 2028.</p>
+      <p>Current running average on Osiris: 7.25 / 10.</p>
+      <div class="achievement">🏆 2nd place (team) · Twente Algorithmic Programming Contest (TAPC), University of Twente, 2025</div>
+    </div>
+    <div>
+      <div class="eyebrow">// grades per course</div>
+      <ul class="stack-list">
+        <li><span>Algorithmics</span><span>8.9</span></li>
+        <li><span>Computer Architecture</span><span>8.8</span></li>
+        <li><span>Computer Networks &amp; OS</span><span>8.8</span></li>
+        <li><span>Agile Project Process Dev.</span><span>10.0</span></li>
+        <li><span>Agile Project Technical Dev.</span><span>9.7</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="fun-stuff">
+  <div class="wrap">
+    <div class="eyebrow">// fun stuff</div>
+    <h2>Beyond the code</h2>
+    <div class="social-grid">
+
+      <a class="social-card" href="https://lnkd.in/p/eNZp5G8g" target="_blank" rel="noopener">
+        <div class="thumb"><img src="img/optiver-event.jpg" alt="Optiver's Frontier AI on a Live Trading Floor event in Amsterdam" loading="lazy"></div>
+        <div class="body">
+          <h3>Optiver: Frontier AI on a Live Trading Floor</h3>
+          <p>An evening at Optiver in Amsterdam learning how AI is applied across trading, research and technology, and talking with people across trading, quant research and tech about ideas for my own market-making project.</p>
+        </div>
+      </a>
+
+      <a class="social-card" href="https://www.linkedin.com/posts/christian2007_rabobank-bonhoeffercollege-stuntdag-activity-7321174865875529729-Ky4l" target="_blank" rel="noopener">
+        <div class="thumb"><img src="img/rabobank-collab.jpg" alt="Ice cream stand sponsored by Rabobank at the Bonhoeffer College stuntdag" loading="lazy"></div>
+        <div class="body">
+          <h3>Rabobank Members' Council: First Project</h3>
+          <p>My first project as a new member of Rabobank's Members' Council, and my last for Bonhoeffer College: an ice cream stand sponsored by Rabobank plus a photobooth for the school's stuntdag, a fitting close to my time there and a great start with the council.</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <div class="eyebrow">// contact</div>
+        <h2>Let's connect</h2>
+        <p>Open to internships, student jobs, and interesting conversations about quant development.</p>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/Christian070707" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/christian2007/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:christian.abdalla.07@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="fine">© <span id="year"></span> Christian Abdalla. Built with HTML, CSS &amp; JS. Hosted on GitHub Pages.</div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="project-modal">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+    <button class="modal-close" type="button" aria-label="Close">✕</button>
+    <div class="card-top">
+      <h3 id="modal-title"></h3>
+      <span class="status" id="modal-status"></span>
+    </div>
+    <p id="modal-desc"></p>
+    <div class="tags" id="modal-tags"></div>
+    <div class="card-links" id="modal-links"></div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const PROJECTS = {
+    hyperliquid: {
+      title: "Hyperliquid: C++ Market Making Infra",
+      status: "active", statusClass: "",
+      desc: "Latency-sensitive C++ trading infrastructure for a crypto market-making system: order book management, market data handling, and quoting/execution logic driven by real-time websocket data. Includes benchmarks for critical-path latency and a PostgreSQL/TimescaleDB time-series database (with separate production and test environments) hosted on a Debian server, accessed via SSH.",
+      tags: ["C++", "Market Making", "WebSockets", "TimescaleDB", "Python", "PostgreSQL", "simdjson"],
+      links: []
+    },
+    orderbook: {
+      title: "C++ Limit Order Book & Simulator",
+      status: "active", statusClass: "",
+      desc: "A C++ limit order book implementing order matching, bid/ask management, and trade execution logic, built to model market microstructure and order book mechanics in a controlled environment. Matching runs on price-time priority.",
+      tags: ["C++", "Order Matching", "Data Structures"],
+      links: []
+    },
+    quarto: {
+      title: "Quarto: Java TCP Game Server",
+      status: "completed", statusClass: "completed",
+      desc: "Full Java TCP networking stack (server and client) for the board game Quarto: a custom application protocol, per-session state machine, thread-safe matchmaking, defensive input parsing, and disconnect handling. The server acts as single source of truth, re-validating every move server-side.",
+      tags: ["Java", "TCP Sockets", "Concurrency"],
+      links: []
+    },
+    rise5: {
+      title: "RISE 5: Fullstack Web App",
+      status: "completed", statusClass: "completed",
+      desc: "5-person Scrum team, fullstack web application (Java, Vue, Bootstrap) for an external stakeholder, live-deployed on an Ubuntu server. Personally built new pages end-to-end and designed the PostgreSQL database: 15+ tables, role-based access control, and prepared statements.",
+      tags: ["Java", "Vue.js", "PostgreSQL", "Scrum", "JavaScript", "Agile"],
+      links: [{ label: "Live demo →", url: "https://rise5.paas.hosted-by-previder.com/rise/" }]
+    },
+    scuba: {
+      title: "Scuba Chat: Ad-Hoc Network",
+      status: "completed", statusClass: "completed",
+      desc: "4-person team, a fully distributed, server-less multi-hop chat network over an emulated underwater acoustic physical layer. Personally designed a custom bit-packed packet/frame header (sequence number, addressing, fragmentation) and built the text-based user interface.",
+      tags: ["Java", "Distributed Systems", "Protocol Design"],
+      links: []
+    },
+    assetanalyzer: {
+      title: "AssetAnalyzer: Stock Dashboard",
+      status: "completed", statusClass: "completed",
+      desc: "A Python/Streamlit dashboard that loads historical price data and computes key financial metrics (CAGR, Sharpe ratio, max drawdown, volatility), with interactive Plotly visualizations of price trends and return distributions. Includes unit tests for the calculation logic.",
+      tags: ["Python", "Streamlit", "Financial Analysis"],
+      links: [{ label: "Code →", url: "https://github.com/Christian070707/AssetAnalyzer" }]
+    },
+    newsletterbot: {
+      title: "Financial Newsletter Bot",
+      status: "completed", statusClass: "completed",
+      desc: "A free-to-run Python bot that checks a Gmail inbox for financial newsletters, summarizes them with an LLM (OpenRouter) including sentiment tagging, and delivers clean summaries to Telegram every hour, running entirely on free infrastructure.",
+      tags: ["Python", "LLM / AI", "Telegram API"],
+      links: []
+    },
+    parking: {
+      title: "Parking Lot Prediction",
+      status: "early stage", statusClass: "progress",
+      desc: "Manual data collection of parking spot occupancy on campus via a self-built Google Forms pipeline (with API-triggered recurring rounds) and an early Python heatmap. Goal: a linear regression model predicting where and when spots will be free.",
+      tags: ["Python", "Data Collection", "Google API"],
+      links: []
+    }
+  };
+
+  (function(){
+    const overlay = document.getElementById('project-modal');
+    const modalCard = overlay.querySelector('.modal-card');
+    const titleEl = document.getElementById('modal-title');
+    const statusEl = document.getElementById('modal-status');
+    const descEl = document.getElementById('modal-desc');
+    const tagsEl = document.getElementById('modal-tags');
+    const linksEl = document.getElementById('modal-links');
+    let lastFocused = null;
+
+    function openModal(id){
+      const p = PROJECTS[id];
+      if(!p) return;
+      titleEl.textContent = p.title;
+      statusEl.textContent = p.status;
+      statusEl.className = 'status' + (p.statusClass ? ' ' + p.statusClass : '');
+      descEl.textContent = p.desc;
+      tagsEl.innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+      linksEl.innerHTML = p.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('');
+      lastFocused = document.activeElement;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      modalCard.focus();
+    }
+
+    function closeModal(){
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      if(lastFocused) lastFocused.focus();
+    }
+
+    document.querySelectorAll('.see-more').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.project));
+    });
+    overlay.querySelector('.modal-close').addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+    });
+  })();
+</script>
+</body>
+</html>

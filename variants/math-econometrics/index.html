@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Name Surname]</title>
+<meta name="description" content="[Name Surname]. Mathematics and Econometrics double-degree student at [University], interested in probability, statistics and quantitative finance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ffffff;
+    --ink:#1c1416;
+    --ink-2:#5f5255;
+    --wine:#6b1d2a;
+    --wine-deep:#4a1019;
+    --wine-tint:#f6ecee;
+    --rule:#e6dadb;
+    --rule-strong:#c9b3b6;
+    --serif:'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+    --mono:'IBM Plex Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-size:17px;
+    line-height:1.55;
+    font-feature-settings:"kern","liga","onum";
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--wine); color:#fff; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  :focus-visible{ outline:2px solid var(--wine); outline-offset:3px; }
+
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 28px; }
+  .mono{ font-family:var(--mono); }
+  em{ font-style:italic; }
+
+  /* ---------- top band ---------- */
+  nav{
+    position:sticky; top:0; z-index:20;
+    background:var(--wine);
+    color:#fff;
+    border-bottom:1px solid var(--wine-deep);
+  }
+  nav .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    height:54px; gap:24px;
+  }
+  nav .name{
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    font-size:1.15rem; letter-spacing:0.005em; white-space:nowrap;
+  }
+  nav ul{ display:flex; gap:22px; list-style:none; font-family:var(--mono); font-size:0.74rem; letter-spacing:0.02em; }
+  nav ul a{ color:rgba(255,255,255,0.78); padding:4px 0; border-bottom:1px solid transparent; transition:color .12s, border-color .12s; }
+  nav ul a:hover, nav ul a:focus-visible{ color:#fff; border-bottom-color:rgba(255,255,255,0.6); outline:none; }
+
+  /* ---------- hero ---------- */
+  header.hero{ padding:88px 0 0; }
+  .kicker{
+    font-family:var(--mono); font-size:0.74rem; color:var(--wine);
+    letter-spacing:0.04em; margin-bottom:22px;
+  }
+  h1{
+    font-weight:500;
+    font-size:clamp(2.35rem, 5.6vw, 4.1rem);
+    line-height:1.06;
+    letter-spacing:-0.015em;
+    max-width:15ch;
+    margin-bottom:26px;
+    text-wrap:balance;
+  }
+  h1 em{ color:var(--wine); }
+  .lead{
+    font-size:1.2rem; line-height:1.5; color:var(--ink-2);
+    max-width:36em; margin-bottom:30px;
+  }
+  .hero-links{ display:flex; flex-wrap:wrap; gap:6px 22px; font-family:var(--mono); font-size:0.8rem; }
+  .hero-links a{ color:var(--wine); border-bottom:1px solid var(--rule-strong); padding-bottom:1px; }
+  .hero-links a:hover{ border-bottom-color:var(--wine); }
+
+  .facts{
+    margin-top:64px;
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--rule);
+    display:grid; grid-template-columns:repeat(3, 1fr);
+  }
+  .facts > div{ padding:16px 0; }
+  .facts > div + div{ border-left:1px solid var(--rule); padding-left:24px; }
+  .facts dt{ font-family:var(--mono); font-size:0.68rem; color:var(--ink-2); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:4px; }
+  .facts dd{ font-size:0.98rem; line-height:1.4; }
+
+  /* ---------- sections ---------- */
+  section{ padding:72px 0 0; }
+  .sec{
+    display:grid; grid-template-columns:200px 1fr; gap:0 48px;
+    border-top:1px solid var(--rule);
+    padding-top:28px;
+  }
+  .sec-head{ position:sticky; top:74px; align-self:start; }
+  .sec-head .num{ font-family:var(--mono); font-size:0.72rem; color:var(--wine); display:block; margin-bottom:8px; }
+  h2{ font-weight:500; font-size:1.55rem; line-height:1.15; letter-spacing:-0.01em; }
+  .sec-body{ min-width:0; }
+  .sec-body > p{ max-width:38em; margin-bottom:16px; }
+  .sec-body > p:last-child{ margin-bottom:0; }
+  .sub{ font-family:var(--mono); font-size:0.72rem; color:var(--wine); letter-spacing:0.05em; text-transform:uppercase; margin:36px 0 12px; }
+  .sub:first-child{ margin-top:0; }
+
+  /* stack / grades: simple ruled table */
+  table.ruled{ width:100%; border-collapse:collapse; font-size:0.98rem; max-width:44em; }
+  table.ruled td{ padding:9px 0; border-bottom:1px solid var(--rule); vertical-align:top; }
+  table.ruled td:first-child{ width:40%; padding-right:16px; }
+  table.ruled td:last-child{ color:var(--ink-2); }
+  table.grades td:first-child{ width:auto; }
+  table.ruled td.n{ font-family:var(--mono); font-size:0.85rem; color:var(--ink); text-align:right; width:auto; white-space:nowrap; }
+
+  /* ---------- note on the background figure ---------- */
+  details.fig{ border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); max-width:44em; margin-top:36px; }
+  details.fig summary{
+    list-style:none; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:baseline; gap:14px;
+    padding:14px 0; font-size:1.02rem; font-weight:500;
+  }
+  details.fig summary::-webkit-details-marker{ display:none; }
+  details.fig summary:hover{ color:var(--wine); }
+  details.fig[open] .p-toggle{ transform:rotate(45deg); }
+  details.fig .f-body{ padding:2px 0 22px; max-width:40em; }
+  details.fig .f-body p{ margin-bottom:12px; }
+  details.fig .f-body p:last-child{ margin-bottom:0; }
+  details.fig .f-body .m{ font-family:var(--mono); font-size:0.86em; }
+  details.fig .f-body .src{ font-family:var(--mono); font-size:0.74rem; color:var(--ink-2); line-height:1.7; }
+
+  /* ---------- projects ---------- */
+  .projects{ border-top:1px solid var(--rule); }
+  details.proj{ border-bottom:1px solid var(--rule); }
+  details.proj summary{
+    list-style:none; cursor:pointer;
+    display:grid; grid-template-columns:2.4em 1fr auto 1.6em;
+    gap:0 14px; align-items:baseline;
+    padding:18px 0;
+  }
+  details.proj summary::-webkit-details-marker{ display:none; }
+  .p-num{ font-family:var(--mono); font-size:0.72rem; color:var(--ink-2); }
+  .p-title{ font-size:1.15rem; font-weight:500; line-height:1.25; }
+  .p-title small{ display:block; font-weight:400; font-size:0.95rem; color:var(--ink-2); margin-top:3px; max-width:46em; }
+  .p-status{ font-family:var(--mono); font-size:0.7rem; color:var(--wine); white-space:nowrap; letter-spacing:0.02em; }
+  .p-status.done{ color:var(--ink-2); }
+  .p-toggle{ font-family:var(--mono); font-size:1rem; color:var(--wine); text-align:right; line-height:1; transition:transform .15s; }
+  details.proj[open] .p-toggle{ transform:rotate(45deg); }
+  details.proj summary:hover .p-title{ color:var(--wine); }
+  .p-body{ padding:2px 0 24px calc(2.4em + 14px); max-width:52em; }
+  .p-body p{ margin-bottom:12px; color:var(--ink); }
+  .p-tags{ font-family:var(--mono); font-size:0.74rem; color:var(--ink-2); margin-bottom:8px; line-height:1.9; }
+  .p-links a{ font-family:var(--mono); font-size:0.78rem; color:var(--wine); border-bottom:1px solid var(--rule-strong); margin-right:18px; }
+  .p-links a:hover{ border-bottom-color:var(--wine); }
+
+  /* ---------- experience ---------- */
+  .exp{ border-top:1px solid var(--rule); }
+  .exp-item{
+    display:grid; grid-template-columns:180px 1fr; gap:0 24px;
+    padding:22px 0; border-bottom:1px solid var(--rule);
+  }
+  .exp-when{ font-family:var(--mono); font-size:0.74rem; color:var(--ink-2); line-height:1.7; padding-top:4px; }
+  .exp-item h3{ font-size:1.15rem; font-weight:500; line-height:1.25; }
+  .exp-role{ font-style:italic; color:var(--wine); margin:2px 0 10px; }
+  .exp-item ul{ list-style:none; max-width:46em; }
+  .exp-item ul li{ position:relative; padding-left:16px; margin-bottom:5px; color:var(--ink); }
+  .exp-item ul li::before{ content:"–"; position:absolute; left:0; color:var(--rule-strong); }
+
+  /* ---------- education ---------- */
+  .edu-note{
+    margin-top:22px; padding:12px 16px;
+    border-left:2px solid var(--wine); background:var(--wine-tint);
+    font-size:0.95rem; max-width:38em;
+  }
+
+  /* ---------- fun stuff ---------- */
+  .photos{ display:grid; grid-template-columns:1fr 1fr; gap:36px; }
+  .photos figure{ min-width:0; }
+  .photos a.ph{ display:block; }
+  .photos img{ width:100%; aspect-ratio:4/3; object-fit:cover; filter:saturate(0.92); transition:filter .2s; }
+  .photos a.ph:hover img{ filter:saturate(1); }
+  .photos .thumb{ aspect-ratio:4/3; background:var(--wine-tint); border:1px dashed var(--rule-strong); display:flex; align-items:center; justify-content:center; text-align:center; padding:16px; font-family:var(--mono); font-size:0.72rem; color:var(--ink-2); }
+  .photos figcaption{ margin-top:12px; }
+  .photos figcaption strong{ display:block; font-weight:500; font-size:1.05rem; margin-bottom:4px; }
+  .photos figcaption strong a:hover{ color:var(--wine); }
+  .photos figcaption p{ font-size:0.95rem; color:var(--ink-2); }
+  .photos figcaption .src{ font-family:var(--mono); font-size:0.7rem; color:var(--wine); margin-top:8px; display:inline-block; border-bottom:1px solid var(--rule-strong); }
+
+  /* ---------- footer ---------- */
+  footer{ position:relative; margin-top:88px; background:var(--wine); color:#fff; padding:64px 0 36px; }
+  footer .top{ display:grid; grid-template-columns:200px 1fr; gap:0 48px; }
+  footer .num{ font-family:var(--mono); font-size:0.72rem; color:rgba(255,255,255,0.7); display:block; margin-bottom:8px; }
+  footer h2{ color:#fff; }
+  footer p{ max-width:34em; color:rgba(255,255,255,0.85); margin-bottom:22px; }
+  footer .mail{
+    font-size:clamp(1.25rem, 2.8vw, 1.8rem); font-weight:500; color:#fff;
+    border-bottom:1px solid rgba(255,255,255,0.5); padding-bottom:2px;
+    display:inline-block; margin-bottom:26px; word-break:break-all;
+  }
+  footer .mail:hover{ border-bottom-color:#fff; }
+  footer .links{ display:flex; flex-wrap:wrap; gap:6px 22px; font-family:var(--mono); font-size:0.78rem; }
+  footer .links a{ color:rgba(255,255,255,0.8); border-bottom:1px solid transparent; }
+  footer .links a:hover{ color:#fff; border-bottom-color:rgba(255,255,255,0.6); }
+  footer .fine{
+    margin-top:56px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.25);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px 24px;
+    font-family:var(--mono); font-size:0.7rem; color:rgba(255,255,255,0.65);
+  }
+
+  /* ---------- scroll-driven figure ---------- */
+  .field{ position:fixed; top:0; left:0; width:100%; height:100vh; z-index:-1; pointer-events:none; }
+  /* white halo around glyphs so the figure's lines drop out where they pass behind text */
+  header, section{ text-shadow:0 0 2px var(--paper), 0 0 4px var(--paper), 0 0 8px var(--paper); }
+  .edu-note{ text-shadow:none; }
+  /* low-opacity blur scrim on the text containers the trajectory can pass behind */
+  .sec-body, header.hero h1, header.hero .lead, header.hero .hero-links, header.hero .facts{
+    -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px); background:rgba(255,255,255,0.12);
+  }
+  .field canvas{ width:100%; height:100%; display:block; }
+  .field .eq{
+    position:absolute; right:22px; bottom:28px;
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    font-family:var(--mono); font-size:0.62rem; letter-spacing:0.02em; white-space:nowrap;
+    color:var(--ink-2); opacity:0.75;
+  }
+  .field .eq b{ font-weight:400; color:var(--wine); }
+  @media (max-width:1120px){ .field .eq{ display:none; } }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:820px){
+    .sec, footer .top{ grid-template-columns:1fr; gap:18px 0; }
+    .sec-head{ position:static; }
+    .exp-item{ grid-template-columns:1fr; gap:6px 0; }
+    .exp-when{ padding-top:0; }
+  }
+  @media (max-width:640px){
+    body{ font-size:16px; }
+    .wrap{ padding:0 20px; }
+    nav .wrap{ height:auto; flex-direction:column; align-items:flex-start; gap:8px; padding-top:12px; padding-bottom:12px; }
+    nav ul{ flex-wrap:wrap; gap:8px 16px; }
+    header.hero{ padding-top:56px; }
+    h1{ max-width:none; }
+    .lead{ font-size:1.08rem; }
+    .facts{ grid-template-columns:1fr; margin-top:44px; }
+    .facts > div + div{ border-left:none; padding-left:0; border-top:1px solid var(--rule); }
+    section{ padding-top:52px; }
+    details.proj summary{ grid-template-columns:2em 1fr 1.4em; gap:0 10px; }
+    .p-status{ grid-column:2; grid-row:2; margin-top:6px; }
+    .p-toggle{ grid-column:3; grid-row:1; }
+    .p-body{ padding-left:0; }
+    .photos{ grid-template-columns:1fr; gap:32px; }
+    footer{ margin-top:64px; padding-top:48px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+  @media print{
+    nav{ position:static; }
+    footer{ background:none; color:var(--ink); }
+    details.proj{ break-inside:avoid; }
+    details.proj summary .p-toggle{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="field" aria-hidden="true">
+  <canvas id="field"></canvas>
+  <div class="eq">q̇ = L_b − L_a &nbsp; İ = −ρ(I−½) + χI(1−I)(L_b − L_a) + ε sin ωt &nbsp; Ḋ = (g(I) − D)/τ &nbsp;&nbsp; τ = <b id="eq-tau">0.05</b> &nbsp; θ = <b id="eq-th">0.60</b></div>
+</div>
+<!--
+  TEMPLATE NOTES (delete when done)
+  Search for [brackets] and replace with real details.
+  Things to fill in: name, city, university, email, GitHub/LinkedIn links,
+  project titles + descriptions, experience, grades, photos in img/.
+-->
+
+<nav>
+  <div class="wrap">
+    <a class="name" href="#top">[Name Surname]</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#fun-stuff">Fun stuff</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="kicker">[City], the Netherlands &nbsp;·&nbsp; BSc Mathematics &amp; BSc Econometrics, [University]</p>
+    <h1>Two degrees, one question: when does the <em>proof</em> survive contact with real data?</h1>
+    <p class="lead">I'm doing a double bachelor in Mathematics and Econometrics. The mathematics side is where I learn why things are true, the econometrics side is where I find out how much of that still holds once the data is noisy, missing, or measured wrong. This page keeps track of both.</p>
+    <div class="hero-links">
+      <a href="https://github.com/[username]" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/[username]/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="mailto:[email]">[email]</a>
+    </div>
+
+    <dl class="facts">
+      <div>
+        <dt>Currently</dt>
+        <dd>Pricing options with Monte Carlo and comparing against closed-form Black-Scholes, plus a course in measure-theoretic probability.</dd>
+      </div>
+      <div>
+        <dt>Studying</dt>
+        <dd>Second year of a double bachelor, expected to graduate mid-2029.</dd>
+      </div>
+      <div>
+        <dt>Open to</dt>
+        <dd>Internships, student jobs, and conversations about probability, statistics and quantitative finance.</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap sec">
+    <div class="sec-head">
+      <span class="num">01</span>
+      <h2>About</h2>
+    </div>
+    <div class="sec-body">
+      <p>I study Mathematics and Econometrics at [University] as a double degree. I picked the combination because I didn't want to choose between rigour and relevance: analysis and probability theory on one side, regression, time series and optimisation on the other. The overlap is where I spend most of my time, mainly stochastic processes and statistical theory.</p>
+      <p>Alongside my studies I'm [a teaching assistant for Linear Algebra / active in the mathematics study association / part of a student investment club]. I like problems that start on paper and end in code.</p>
+
+      <div class="sub">Tools I reach for</div>
+      <table class="ruled">
+        <tr><td>Python</td><td>NumPy, SciPy, statsmodels, most of my simulations</td></tr>
+        <tr><td>R</td><td>econometrics coursework and time series</td></tr>
+        <tr><td>LaTeX</td><td>proofs, problem sets and reports</td></tr>
+        <tr><td>MATLAB</td><td>numerical methods course</td></tr>
+        <tr><td>SQL</td><td>getting data out of databases</td></tr>
+        <tr><td>Git</td><td>tooling</td></tr>
+      </table>
+
+      <details class="fig" id="figure-note">
+        <summary><span>What is the line drawn behind this page?</span><span class="p-toggle" aria-hidden="true">+</span></summary>
+        <div class="f-body">
+          <p>It is a single trajectory of a small model of a market maker, computed in your browser while you read. A market maker posts a bid and an ask around the current price and earns the spread, but every fill changes its inventory, and holding inventory is a risk. Gu&eacute;ant, Lehalle and Fernandez-Tapia solved the resulting control problem: the optimal distance of each quote from the price is a closed formula in the risk aversion, the volatility, and how quickly fills die off as you quote further away. The model uses those formulas as the maker's quotes.</p>
+          <p>The twist is that the market here reacts to the maker. Three quantities evolve together: the inventory <span class="m">q</span>, the imbalance <span class="m">I</span> between bid and ask volume in the order book, and a micro-price adjustment <span class="m">D</span> that follows the imbalance with a lag <span class="m">&tau;</span>. A fill on the bid side moves the inventory and pushes the imbalance, the imbalance moves the micro-price, the micro-price shifts the quotes, and the quotes change the fill rates. A small periodic flow from outside keeps the whole thing from ever quite sitting still.</p>
+          <p>The lag <span class="m">&tau;</span> is what scrolling controls. At the top of the page it is short: the micro-price reacts almost instantly, the loop overshoots, and the trajectory winds around a torus without ever repeating itself. Scrolling down makes the lag longer, which slowly changes how many times the loop turns for each cycle of the outside flow. Where that ratio comes close to a simple fraction the strands nearly close on themselves and the mesh gathers into a knot of a few strands; in between it dissolves into a dense weave. Past <span class="m">&tau; &asymp; 0.37</span> the loop would pass a Hopf bifurcation, settle onto a stable equilibrium and collapse to a point, so the page stops before that.</p>
+          <p>What you see is the three-dimensional path <span class="m">(q, I, D)</span> projected onto the screen and rotated slowly with the scroll position. It is drawn as one line that fades with age, so the figure is always an actual solution of the equations, also while <span class="m">&tau;</span> is changing. On wide screens the equations and the current <span class="m">&tau;</span> are printed in the bottom-right corner.</p>
+          <p class="src">Gu&eacute;ant, Lehalle, Fernandez-Tapia (2013), <em>Dealing with the inventory risk: a solution to the market making problem</em>, Math. Financ. Econ. &middot; Avellaneda, Stoikov (2008), <em>High-frequency trading in a limit order book</em>, Quant. Finance.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap sec">
+    <div class="sec-head">
+      <span class="num">02</span>
+      <h2>Projects</h2>
+    </div>
+    <div class="sec-body">
+      <div class="projects">
+
+        <details class="proj">
+          <summary>
+            <span class="p-num">01</span>
+            <span class="p-title">Option pricing: Monte Carlo vs. closed form<small>Simulated geometric Brownian motion to price European and Asian options, checked against Black-Scholes where a closed form exists.</small></span>
+            <span class="p-status">active</span>
+            <span class="p-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="p-body">
+            <p>Implemented plain Monte Carlo, then antithetic variates and control variates to bring the variance down. The Asian option has no closed form, so the European one serves as a sanity check on the same paths. Convergence plots included.</p>
+            <div class="p-tags">Python · Stochastic processes · Monte Carlo · Quantitative finance</div>
+            <div class="p-links"><a href="[link]" target="_blank" rel="noopener">Code on GitHub ↗</a></div>
+          </div>
+        </details>
+
+        <details class="proj">
+          <summary>
+            <span class="p-num">02</span>
+            <span class="p-title">Volatility modelling with GARCH<small>Fitting GARCH(1,1) and extensions to daily index returns and evaluating value-at-risk forecasts.</small></span>
+            <span class="p-status">active</span>
+            <span class="p-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="p-body">
+            <p>Compared a GARCH(1,1) with normal and Student-t innovations, plus a GJR-GARCH for the leverage effect. Backtested one-day-ahead value-at-risk with Kupiec and Christoffersen tests. The t-distribution matters more than the asymmetry, at least on this data.</p>
+            <div class="p-tags">R · Time series · GARCH · Risk</div>
+          </div>
+        </details>
+
+        <details class="proj">
+          <summary>
+            <span class="p-num">03</span>
+            <span class="p-title">Linear regression from first principles<small>OLS, the Gauss-Markov theorem and its failure modes, derived by hand and verified in code.</small></span>
+            <span class="p-status done">completed</span>
+            <span class="p-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="p-body">
+            <p>Wrote up the projection-matrix view of OLS, proved unbiasedness and the variance formula, then built the estimator in NumPy without calling any regression library. Simulations show exactly where the theorem stops holding once errors are heteroskedastic or correlated.</p>
+            <div class="p-tags">Python · LaTeX · Linear algebra · Statistics</div>
+            <div class="p-links"><a href="[link]" target="_blank" rel="noopener">Write-up (PDF) ↗</a></div>
+          </div>
+        </details>
+
+        <details class="proj">
+          <summary>
+            <span class="p-num">04</span>
+            <span class="p-title">Markov chain model of customer churn<small>Discrete-time Markov chain fitted to subscription data, with stationary distribution and expected lifetime.</small></span>
+            <span class="p-status done">completed</span>
+            <span class="p-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="p-body">
+            <p>Estimated the transition matrix from monthly states (active, paused, churned), derived the absorption probabilities and expected time to churn analytically, then checked them against simulation. Course project for stochastic processes.</p>
+            <div class="p-tags">Python · Markov chains · Stochastic processes</div>
+          </div>
+        </details>
+
+        <details class="proj">
+          <summary>
+            <span class="p-num">05</span>
+            <span class="p-title">Numerical optimisation methods<small>Gradient descent, Newton and BFGS implemented from scratch and compared on maximum likelihood problems.</small></span>
+            <span class="p-status done">completed</span>
+            <span class="p-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="p-body">
+            <p>Implemented the methods with line search, then used them to fit a logit and a Poisson regression by maximum likelihood. Compared iteration counts and sensitivity to the starting point. Mostly an excuse to understand what happens inside the optimiser that R calls for you.</p>
+            <div class="p-tags">MATLAB · Python · Optimisation · Maximum likelihood</div>
+          </div>
+        </details>
+
+        <details class="proj">
+          <summary>
+            <span class="p-num">06</span>
+            <span class="p-title">Forecasting Dutch inflation<small>ARIMA and VAR models on CBS and ECB data, evaluated out-of-sample against a random walk benchmark.</small></span>
+            <span class="p-status">early stage</span>
+            <span class="p-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="p-body">
+            <p>Monthly HICP data from 2000 onward. So far a univariate ARIMA with rolling-window forecasts; next is a small VAR with energy prices and unemployment, and a proper Diebold-Mariano comparison.</p>
+            <div class="p-tags">R · Time series · ARIMA · VAR</div>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap sec">
+    <div class="sec-head">
+      <span class="num">03</span>
+      <h2>Experience</h2>
+    </div>
+    <div class="sec-body">
+      <div class="exp">
+
+        <div class="exp-item">
+          <div class="exp-when">[Month Year] – present<br>[City]</div>
+          <div>
+            <h3>[University or study association]</h3>
+            <div class="exp-role">[Role, e.g. Teaching assistant, Linear Algebra]</div>
+            <ul>
+              <li>[What you did, in one line]</li>
+              <li>[What you did, in one line]</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-when">[Month Year] – [Month Year]<br>[City]</div>
+          <div>
+            <h3>[Company]</h3>
+            <div class="exp-role">[Role, e.g. Quantitative research intern]</div>
+            <ul>
+              <li>[What you did, in one line]</li>
+              <li>[What you did, in one line]</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap sec">
+    <div class="sec-head">
+      <span class="num">04</span>
+      <h2>Education</h2>
+    </div>
+    <div class="sec-body">
+      <p><strong>BSc Mathematics</strong> and <strong>BSc Econometrics</strong> (double degree), [University]. Started September 2025, expected graduation around July 2029. Current running average: [x.x] / 10.</p>
+
+      <div class="sub">Grades per course</div>
+      <table class="ruled grades">
+        <tr><td>Analysis</td><td class="n">[x.x]</td></tr>
+        <tr><td>Linear Algebra</td><td class="n">[x.x]</td></tr>
+        <tr><td>Probability Theory</td><td class="n">[x.x]</td></tr>
+        <tr><td>Statistics</td><td class="n">[x.x]</td></tr>
+        <tr><td>Introduction to Econometrics</td><td class="n">[x.x]</td></tr>
+        <tr><td>Numerical Methods</td><td class="n">[x.x]</td></tr>
+      </table>
+
+      <div class="edu-note">[Achievement, e.g. participant in the Dutch Mathematical Olympiad finals, 2024. Delete this box if there is nothing to put here.]</div>
+    </div>
+  </div>
+</section>
+
+<section id="fun-stuff">
+  <div class="wrap sec">
+    <div class="sec-head">
+      <span class="num">05</span>
+      <h2>Fun stuff</h2>
+    </div>
+    <div class="sec-body">
+      <div class="photos">
+
+        <figure>
+          <a class="ph" href="[link]" target="_blank" rel="noopener">
+            <div class="thumb">add a photo to img/ and replace this div with an &lt;img&gt;</div>
+          </a>
+          <figcaption>
+            <strong><a href="[link]" target="_blank" rel="noopener">[Event or moment]</a></strong>
+            <p>[Two or three sentences about it, in your own words.]</p>
+            <a class="src" href="[link]" target="_blank" rel="noopener">Post on LinkedIn ↗</a>
+          </figcaption>
+        </figure>
+
+        <figure>
+          <a class="ph" href="[link]" target="_blank" rel="noopener">
+            <div class="thumb">add a photo to img/ and replace this div with an &lt;img&gt;</div>
+          </a>
+          <figcaption>
+            <strong><a href="[link]" target="_blank" rel="noopener">[Event or moment]</a></strong>
+            <p>[Two or three sentences about it, in your own words.]</p>
+            <a class="src" href="[link]" target="_blank" rel="noopener">Post on LinkedIn ↗</a>
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <span class="num">06</span>
+        <h2>Contact</h2>
+      </div>
+      <div>
+        <p>Open to internships, student jobs, and interesting conversations about mathematics, statistics and quantitative finance. Email is the quickest way to reach me.</p>
+        <a class="mail" href="mailto:[email]">[email]</a>
+        <div class="links">
+          <a href="https://github.com/[username]" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/[username]/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="fine">
+      <span>© <span id="year"></span> [Name Surname]</span>
+      <span>Plain HTML and CSS, hosted on GitHub Pages. Last updated September 2026.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function(){
+    // A Guéant–Lehalle–Fernandez-Tapia market maker quoting around a Stoikov
+    // micro-price, closed into a loop with the order book. State (q, I, D):
+    // inventory, book imbalance, micro-price adjustment.
+    //
+    //   q̇ = L_b − L_a
+    //   İ = −ρ(I − ½) + χ I(1−I)(L_b − L_a) + ε sin ωt
+    //   Ḋ = (g(I) − D)/τ
+    //
+    // For a short micro-price lag τ the loop overshoots and the trajectory lives
+    // on a torus (the loop's own cycle times the periodic outside flow). Scroll
+    // drives τ from 0.05 at the top of the page to 0.30 at the bottom. The
+    // winding ratio of the two frequencies drifts with τ, so the orbit passes
+    // near resonances (≈ 2/9 around τ = 0.05, ≈ 1/5 around τ = 0.25) where the
+    // strands nearly close and the mesh gathers into a few-strand knot, and
+    // dissolves into a dense mesh in between. Past τ_H ≈ 0.37 the loop is
+    // stable and the figure would collapse to a line, so the sweep stops before.
+    //
+    // Rendering: ONE trajectory integrated live with RK4, kept in a ring buffer
+    // and stroked as a single line. Nothing is precomputed per τ and nothing is
+    // cross-faded, so the figure is always a real solution of the system, also
+    // while τ is moving. The projection (principal axes and scale of the
+    // τ = TAU_LO torus about the equilibrium) is fixed once at load.
+    //
+    // Sign convention: a bid fill is the market selling, so bid-side imbalance
+    // falls with net bid fills (χ·I(1−I)·(L_b − L_a)); the opposite sign is
+    // positive feedback and never oscillates.
+    var canvas = document.getElementById('field');
+    if(!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var elTau = document.getElementById('eq-tau'), elTh = document.getElementById('eq-th');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var w = 0, h = 0, dpr = 1, target = 0, current = 0, raf = null;
+
+    // --- model constants ---------------------------------------------------
+    var GAMMA = 0.1, K = 1.5, A = 0.9, SIGMA = 2.0;          // GLFT
+    var BETA = 5, RHO = 0.8, CHI = 8, ZETA = 10, SPREAD = 0.02; // feedback
+    var EPS = 0.03, OMEGA = 2.5;                              // exogenous flow
+    var C0 = (1 / GAMMA) * Math.log(1 + GAMMA / K);
+    var XI = (SIGMA / 2) * Math.sqrt((GAMMA / (2 * K * A)) * Math.pow(1 + GAMMA / K, 1 + K / GAMMA));
+    var DT = 0.005, STRIDE = 6;                               // one trail sample per 0.03 time units
+    var TAU_LO = 0.05, TAU_HI = 0.30;
+    var CENTRE = [0, 0.5, 0];                                 // the equilibrium
+
+    function rhs(t, q, I, D, tau, out){
+      var db = C0 - BETA * D + (2 * q + 1) * XI;
+      var da = C0 + BETA * D - (2 * q - 1) * XI;
+      var Lb = A * Math.exp(-K * db), La = A * Math.exp(-K * da);
+      var g = (SPREAD / 2) * Math.tanh(ZETA * (2 * I - 1));
+      var net = Lb - La;
+      out[0] = net;
+      out[1] = -RHO * (I - 0.5) + CHI * I * (1 - I) * net + EPS * Math.sin(OMEGA * t);
+      out[2] = (g - D) / tau;
+    }
+    var k1 = [0, 0, 0], k2 = [0, 0, 0], k3 = [0, 0, 0], k4 = [0, 0, 0];
+    var st = [0.05, 0.51, 0.0], tnow = 0;
+    function step(tau){
+      var q = st[0], I = st[1], D = st[2], t = tnow, hd = DT / 2;
+      rhs(t, q, I, D, tau, k1);
+      rhs(t + hd, q + hd * k1[0], I + hd * k1[1], D + hd * k1[2], tau, k2);
+      rhs(t + hd, q + hd * k2[0], I + hd * k2[1], D + hd * k2[2], tau, k3);
+      rhs(t + DT, q + DT * k3[0], I + DT * k3[1], D + DT * k3[2], tau, k4);
+      st[0] = q + DT / 6 * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]);
+      st[1] = I + DT / 6 * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]);
+      st[2] = D + DT / 6 * (k1[2] + 2 * k2[2] + 2 * k3[2] + k4[2]);
+      tnow = t + DT;
+    }
+
+    // --- fixed frame ----------------------------------------------------------
+    // The raw (q, I, D) orbit hugs a diagonal and reads as a line, so we work in
+    // the principal axes of the τ = TAU_LO torus, each scaled so the torus fills
+    // [-1, 1]. Computed once; never changes with τ.
+    function jacobi(m){
+      var v = [[1,0,0],[0,1,0],[0,0,1]], a = [m[0].slice(), m[1].slice(), m[2].slice()];
+      for(var sweep = 0; sweep < 30; sweep++){
+        var off = Math.abs(a[0][1]) + Math.abs(a[0][2]) + Math.abs(a[1][2]);
+        if(off < 1e-14) break;
+        for(var p = 0; p < 2; p++) for(var q = p + 1; q < 3; q++){
+          if(Math.abs(a[p][q]) < 1e-18) continue;
+          var th = 0.5 * Math.atan2(2 * a[p][q], a[q][q] - a[p][p]);
+          var c = Math.cos(th), sn = Math.sin(th);
+          for(var k = 0; k < 3; k++){
+            var akp = a[k][p], akq = a[k][q];
+            a[k][p] = c * akp - sn * akq; a[k][q] = sn * akp + c * akq;
+          }
+          for(k = 0; k < 3; k++){
+            var apk = a[p][k], aqk = a[q][k];
+            a[p][k] = c * apk - sn * aqk; a[q][k] = sn * apk + c * aqk;
+          }
+          for(k = 0; k < 3; k++){
+            var vkp = v[k][p], vkq = v[k][q];
+            v[k][p] = c * vkp - sn * vkq; v[k][q] = sn * vkp + c * vkq;
+          }
+        }
+      }
+      return [0,1,2].map(function(i){ return { val: a[i][i], vec: [v[0][i], v[1][i], v[2][i]] }; });
+    }
+    var axes, scale;
+    function buildFrame(){
+      var i, a, j, n = 4000, s;
+      for(i = 0; i < 20000; i++) step(TAU_LO);
+      var raw = new Float32Array(n * 3), cov = [[0,0,0],[0,0,0],[0,0,0]];
+      for(i = 0; i < n; i++){
+        for(s = 0; s < STRIDE; s++) step(TAU_LO);
+        for(a = 0; a < 3; a++) raw[i * 3 + a] = st[a] - CENTRE[a];
+        for(a = 0; a < 3; a++) for(j = a; j < 3; j++) cov[a][j] += raw[i * 3 + a] * raw[i * 3 + j];
+      }
+      for(a = 0; a < 3; a++) for(j = a; j < 3; j++){ cov[a][j] /= n; cov[j][a] = cov[a][j]; }
+      var eig = jacobi(cov);
+      eig.sort(function(x, y){ return y.val - x.val; });
+      axes = eig.map(function(e){ return e.vec; });
+      scale = [0, 0, 0];
+      for(i = 0; i < n; i++) for(a = 0; a < 3; a++){
+        var v = 0;
+        for(j = 0; j < 3; j++) v += raw[i * 3 + j] * axes[a][j];
+        if(Math.abs(v) > scale[a]) scale[a] = Math.abs(v);
+      }
+      var floor = Math.max(scale[0], scale[1], scale[2]) * 0.15;   // don't inflate a flat axis into noise
+      for(a = 0; a < 3; a++) scale[a] = Math.max(scale[a], floor, 1e-12);
+    }
+
+    // --- trail ----------------------------------------------------------------
+    var NBUF = 8000, buf = new Float32Array(NBUF * 3), head = 0, count = 0;
+    function push(){
+      var b = head * 3;
+      for(var a = 0; a < 3; a++){
+        var v = 0;
+        for(var j = 0; j < 3; j++) v += (st[j] - CENTRE[j]) * axes[a][j];
+        buf[b + a] = v / scale[a];
+      }
+      head = (head + 1) % NBUF; if(count < NBUF) count++;
+    }
+    function advance(tau, n){
+      for(var k = 0; k < n; k++){ for(var s = 0; s < STRIDE; s++) step(tau); push(); }
+    }
+    // Settle onto the attractor for τ and refill the whole trail. Used at load
+    // and whenever the scroll position jumps (reload further down the page,
+    // a nav link): animating through the jump would drag the figure across the
+    // page and scramble the trail.
+    function rebuild(tau){
+      for(var i = 0; i < 6000; i++) step(tau);
+      head = 0; count = 0;
+      advance(tau, NBUF);
+    }
+
+    // --- layout ---------------------------------------------------------------
+    // The trail is stroked onto an offscreen layer and the layer is composited at
+    // the wanted opacity, so however many windings stack up the figure never gets
+    // darker than that opacity.
+    var layer = document.createElement('canvas'), lctx = layer.getContext('2d');
+    function fit(){
+      var d = Math.min(window.devicePixelRatio || 1, 2);
+      var cw = canvas.clientWidth, ch = canvas.clientHeight;
+      if(cw === w && ch === h && d === dpr) return;
+      dpr = d; w = cw; h = ch;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      layer.width = canvas.width; layer.height = canvas.height;
+      lctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    // yA..yB: the band over which the figure leaves the hero (right) and
+    // reappears small in the left margin. τ runs over the whole page.
+    var yA = 0, yB = 1;
+    function measure(){
+      var hero = document.querySelector('header.hero'), proj = document.getElementById('projects');
+      var vh = window.innerHeight;
+      var heroBottom = hero ? hero.offsetTop + hero.offsetHeight : vh;
+      var projTop = proj ? proj.offsetTop : heroBottom + vh;
+      yA = heroBottom - vh * 0.6;
+      yB = projTop - vh * 0.2;
+      if(yB <= yA) yB = yA + 1;
+    }
+    function maxScroll(){ return Math.max(0, document.documentElement.scrollHeight - window.innerHeight); }
+    function progress(){ var m = maxScroll(); return m > 0 ? Math.min(1, Math.max(0, window.scrollY / m)) : 0; }
+    function tauOf(u){ return TAU_LO * Math.pow(TAU_HI / TAU_LO, u); }
+    // Logistic, clamped and renormalised so S(0) = 0 and S(1) = 1 exactly.
+    var S0 = 1 / (1 + Math.exp(6)), S1 = 1 / (1 + Math.exp(-6));
+    function logistic(p){
+      p = Math.min(1, Math.max(0, p));
+      return (1 / (1 + Math.exp(-12 * (p - 0.5))) - S0) / (S1 - S0);
+    }
+    function smooth(x){ x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); }
+
+    var NCH = 10;
+    function strokeTrail(alpha, lw, cx, cy, R, ct, sn, cT, sT){
+      var c = lctx;
+      c.clearRect(0, 0, w, h);
+      c.lineJoin = 'round'; c.lineCap = 'round'; c.lineWidth = lw;
+      var start = (head - count + NBUF) % NBUF, per = Math.ceil(count / NCH);
+      var px0 = 0, py0 = 0;
+      for(var ch = 0; ch < NCH; ch++){
+        var i0 = ch * per, i1 = Math.min(count, i0 + per);
+        if(i0 >= i1) break;
+        // only the oldest fifth of the trail fades; the rest is a uniform object
+        var f = smooth(((ch + 1) / NCH) / 0.2);
+        c.strokeStyle = 'rgba(107,29,42,' + (0.3 * f).toFixed(3) + ')';
+        c.beginPath();
+        if(ch > 0) c.moveTo(px0, py0);
+        for(var i = i0; i < i1; i++){
+          var b = ((start + i) % NBUF) * 3;
+          var x = buf[b], yv = buf[b + 1], z = buf[b + 2];
+          // spin about the ring's own axis (the smallest principal axis), then
+          // tilt it towards the viewer: it turns but never goes edge-on
+          var xr = x * ct - yv * sn, yr = x * sn + yv * ct;
+          var px = cx + xr * R, py = cy - (yr * cT + z * sT) * R;
+          if(i === i0 && ch === 0) c.moveTo(px, py); else c.lineTo(px, py);
+          px0 = px; py0 = py;
+        }
+        c.stroke();
+      }
+      ctx.globalAlpha = alpha;
+      ctx.drawImage(layer, 0, 0, w, h);
+      ctx.globalAlpha = 1;
+    }
+
+    var lastTau = TAU_LO;
+    function draw(s, tau, fade){
+      fit();
+      if(!axes) return;
+      lastTau = tau;
+      var narrow = window.innerWidth <= 820;
+      var y = s * maxScroll();
+
+      // hero (right, large) → left margin (small). The figure dips out of view
+      // at the middle of the band rather than crossing the text.
+      var S = reduce ? 1 : logistic((y - yA) / (yB - yA));
+      var vis = Math.abs(1 - 2 * S);
+      var wrapLeft = Math.max(28, (w - 1040) / 2);
+      var RR = Math.min(w * 0.54, h) * 0.27;
+      var RL = Math.min(RR, (wrapLeft + 200) / 2 * 0.9);
+      var xR = w * 0.78, xL = (wrapLeft + 200) / 2;
+      var R, cx, cy;
+      if(narrow){ R = Math.min(w, h) * 0.26; cx = w * 0.8; cy = h * 0.66; vis = 1; }
+      else {
+        R = RR + (RL - RR) * S;
+        cx = xR + (xL - xR) * S;
+        cy = h * 0.5 + (h * 0.6 - h * 0.5) * S;
+      }
+
+      var theta = reduce ? 0.9 : 0.6 + 2.5 * s, tilt = 0.55;
+      var ct = Math.cos(theta), sn = Math.sin(theta), cT = Math.cos(tilt), sT = Math.sin(tilt);
+
+      var base = narrow ? 0.14 : 0.22;
+      ctx.clearRect(0, 0, w, h);
+      vis *= smooth(fade === undefined ? 1 : fade);
+      if(vis > 0.01) strokeTrail(base * smooth(vis), 0.6, cx, cy, R, ct, sn, cT, sT);
+
+      if(elTau){ elTau.textContent = tau.toFixed(2); elTh.textContent = theta.toFixed(2); }
+    }
+
+    // --- animation --------------------------------------------------------------
+    // The trail advances at RATE samples per second on its own, plus SCROLL_GAIN
+    // samples per unit of τ-progress so the torus reshapes as you scroll. At most
+    // MAXPF samples per frame; the rest is carried over. A jump in scroll
+    // position larger than JUMP is not animated: the trail is rebuilt in place.
+    // Start-up: browsers restore the scroll position after the script has run,
+    // and with scroll-behavior: smooth Firefox even animates that restore. So
+    // the figure stays hidden until the scroll position has been still for
+    // SETTLE ms (and the load event has fired), is rebuilt there, and fades in.
+    // A change in document height (fonts, images) shifts the scroll fraction
+    // without any scrolling; that is snapped and rebuilt too.
+    var RATE = 90, SCROLL_GAIN = 40000, MAXPF = 600, JUMP = 0.12, SETTLE = 250, FADE = 700;
+    var last = 0, pending = 0, uPrev = 0, settled = false, loaded = false, lastMove = 0, shownAt = 0, docH = 0;
+    function snap(){
+      current = target; uPrev = current; pending = 0;
+      rebuild(tauOf(current));
+    }
+    function frame(now){
+      raf = requestAnimationFrame(frame);
+      if(document.hidden) return;
+      var dt = last ? Math.min(0.1, Math.max(0, (now - last) / 1000)) : 1 / 60; last = now;
+      var H = document.documentElement.scrollHeight;
+      if(H !== docH){ docH = H; measure(); target = progress(); if(settled && Math.abs(target - current) > 0.01) snap(); }
+      if(!settled){
+        if(target !== current){ current = target; lastMove = now; }
+        if(!lastMove) lastMove = now;
+        if(loaded && now - lastMove > SETTLE){ settled = true; shownAt = now; snap(); }
+        else { ctx.clearRect(0, 0, w, h); return; }
+      }
+      if(Math.abs(target - current) > JUMP) snap();
+      current += (target - current) * 0.16;
+      if(Math.abs(target - current) < 1e-4) current = target;
+      var tau = tauOf(current);
+      pending += RATE * dt + SCROLL_GAIN * Math.abs(current - uPrev); uPrev = current;
+      var n = Math.min(MAXPF, Math.floor(pending)); pending -= n;
+      advance(tau, n);
+      draw(current, tau, Math.min(1, Math.max(0, (now - shownAt) / FADE)));
+    }
+    function onScroll(){ target = progress(); }
+    function resize(){ fit(); measure(); if(settled) draw(current, lastTau, 1); }
+
+    window.addEventListener('resize', resize);
+    window.addEventListener('load', function(){ loaded = true; resize(); target = progress(); });
+    if(document.readyState === 'complete') loaded = true;
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(resize);
+    buildFrame();
+    current = target = progress();
+    fit(); measure(); docH = document.documentElement.scrollHeight;
+    if(reduce){ rebuild(TAU_LO); draw(0, TAU_LO, 1); return; }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    raf = requestAnimationFrame(frame);
+  })();
+</script>
+</body>
+</html>

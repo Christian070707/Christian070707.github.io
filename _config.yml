@@ -1,0 +1,7 @@
+# Kept in the repo, but not published to christian070707.github.io:
+# variants/ are content templates with placeholder projects,
+# archive/ holds earlier versions of the page.
+exclude:
+  - variants
+  - archive
+  - README.md
