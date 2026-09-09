@@ -245,22 +245,56 @@
   @media (max-width:640px){
     body{ font-size:16px; }
     .wrap{ padding:0 20px; }
-    nav .wrap{ height:auto; flex-direction:column; align-items:flex-start; gap:8px; padding-top:12px; padding-bottom:12px; }
-    nav ul{ flex-wrap:wrap; gap:8px 16px; }
-    header.hero{ padding-top:56px; }
-    h1{ max-width:none; }
-    .hero-grid{ grid-template-columns:1fr; gap:0; }
-    .swirl{ width:104px; order:-1; justify-self:end; margin-bottom:6px; }
+
+    /* nav: one compact sticky row, links scroll sideways behind a fade */
+    nav .wrap{ height:50px; gap:16px; }
+    nav .name{ flex:0 0 auto; font-size:1.08rem; }
+    nav ul{
+      flex:1 1 auto; min-width:0; gap:0;
+      overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch;
+      padding-right:28px;
+      mask-image:linear-gradient(to right, #000 calc(100% - 28px), transparent);
+      -webkit-mask-image:linear-gradient(to right, #000 calc(100% - 28px), transparent);
+    }
+    nav ul::-webkit-scrollbar{ display:none; }
+    nav ul li{ flex:0 0 auto; }
+    nav ul a{ display:block; padding:16px 8px; border-bottom:none; }
+    nav ul li:first-child a{ padding-left:0; }
+    nav ul a:hover, nav ul a:focus-visible{ border-bottom:none; }
+
+    /* hero */
+    header.hero{ padding-top:48px; }
+    .kicker span{ display:block; }
+    .kicker .sep{ display:none; }
+    h1{ max-width:none; font-size:clamp(2rem, 9.4vw, 2.5rem); }
     .lead{ font-size:1.08rem; }
+    .hero-grid{ grid-template-columns:1fr; gap:0; }
+    .swirl{
+      order:1; width:auto; justify-self:start;
+      display:flex; align-items:center; gap:14px; margin-top:32px;
+    }
+    .swirl svg{ width:66px; flex:0 0 auto; }
+    .swirl-cap{ margin-top:0; text-align:left; }
     .facts{ grid-template-columns:1fr; margin-top:44px; }
     .facts > div + div{ border-left:none; padding-left:0; border-top:1px solid var(--rule); }
+
     section{ padding-top:52px; }
-    details.proj summary{ grid-template-columns:2em 1fr 1.4em; gap:0 10px; }
-    .p-status{ grid-column:2; grid-row:2; margin-top:6px; }
-    .p-toggle{ grid-column:3; grid-row:1; }
+
+    /* projects: number on its own line, title takes the full width */
+    details.proj summary{ grid-template-columns:1fr 1.4em; gap:2px 10px; padding:16px 0; }
+    .p-num{ grid-column:1 / -1; grid-row:1; }
+    .p-title{ grid-column:1; grid-row:2; font-size:1.1rem; }
+    .p-toggle{ grid-column:2; grid-row:2; }
+    .p-status{ grid-column:1; grid-row:3; margin-top:6px; }
     .p-body{ padding-left:0; }
+
+    /* experience */
+    .exp-item{ padding:20px 0; }
+
+    /* fun stuff, footer */
     .photos{ grid-template-columns:1fr; gap:32px; }
     footer{ margin-top:64px; padding-top:48px; }
+    footer .fine{ flex-direction:column; gap:6px; }
   }
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
@@ -294,7 +328,7 @@
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-text">
-        <p class="kicker">Enschede, the Netherlands &nbsp;·&nbsp; BSc Technical Computer Science, University of Twente</p>
+        <p class="kicker"><span>Enschede, the Netherlands</span><span class="sep">&nbsp;·&nbsp;</span><span>BSc Technical Computer Science, University of Twente</span></p>
         <h1>Still a CS student. Already obsessed with <em>low-latency</em> systems.</h1>
         <p class="lead">I'm working toward quantitative development. Right now that means building low-latency C++ infrastructure for a crypto market-making system. This page keeps track of what else I build along the way, from coursework to things I try on my own time.</p>
         <div class="hero-links">
