@@ -432,12 +432,12 @@
         <details class="proj" name="proj">
           <summary>
             <span class="p-num">02</span>
-            <span class="p-title">C++ limit order book &amp; simulator<small>A limit order book implementing order matching, bid/ask management and trade execution to model market microstructure.</small></span>
-            <span class="p-status">active</span>
+            <span class="p-title">C++ limit order book<small>An interactive command-line trading simulator built around a limit order book.</small></span>
+            <span class="p-status">in development</span>
             <span class="p-toggle" aria-hidden="true">+</span>
           </summary>
           <div class="p-body">
-            <p>Built to model market microstructure and order book mechanics in a controlled environment. Matching runs on price-time priority.</p>
+            <p>Price levels are kept in sorted maps with a FIFO queue per level (price-time priority). Market and limit orders walk the book with partial fills, unfilled limit orders rest in the book, and every fill is checked against a portfolio's cash and position. A learning project; next up are order cancellation, multiple traders and a stochastic price model.</p>
             <div class="p-tags">C++ · Order matching · Data structures</div>
           </div>
         </details>
